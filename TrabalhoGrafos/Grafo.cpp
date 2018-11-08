@@ -29,3 +29,22 @@ void Grafo::removerNo (int id)
         }
     }
 }
+
+int Grafo::ordemGrafo()
+{
+    return listaAdj.size();
+}
+
+bool Grafo::grafoCompleto()
+{
+    int n = ordemGrafo();
+    int num_Arestas = 0;
+    for(int i = 0; i < n; i++) {
+        num_Arestas += listaAdj[i].getGrau();
+    }
+    if(num_arestas == n*(n-1))
+        return true;
+    return false;
+
+}
+

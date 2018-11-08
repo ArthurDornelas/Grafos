@@ -10,7 +10,8 @@ class Grafo{
         ~Grafo();
         void adcionarNo(int  id);
         void removerNo(int id);
-
+        int ordemGrafo();
+        bool grafoCompleto();
 
 
 
