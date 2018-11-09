@@ -50,3 +50,4 @@ void No::removeAresta(int ident)
     else
         grau -= 1;
 }
+

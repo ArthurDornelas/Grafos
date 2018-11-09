@@ -48,3 +48,68 @@ bool Grafo::grafoCompleto()
 
 }
 
+bool Grafo::grafoKRegularidade(int k)
+{
+    for (std::vector<No>::iterator it = listaAdj.begin(); it != listaAdj.end(); ++it) {
+                if(it->getGrau()!=k)
+                {
+                    return false;
+                }
+    }
+    return true;
+
+}
+
+void Grafo::vizinhacaAberta(int id)
+{
+    int i=0;
+    for (std::vector<No>::iterator it = listaAdj.begin(); it != listaAdj.end(); ++it, i++) {
+         if( it->getId() == id )
+         {
+            for(std::vector<Aresta>::iterator arest = listaAdj[i].listaAresta.begin(); arest != listaAdj[i].listaAresta.end(); ++a)
+                cout << arest->getIdNo() << endl;
+         }
+    }
+}
+
+void Grafo::vizinhacaFechada(int id)
+{
+    int i=0;
+    cout << id << endl;
+    for (std::vector<No>::iterator it = listaAdj.begin(); it != listaAdj.end(); ++it, i++) {
+         if( it->getId() == id )
+         {
+            for(std::vector<Aresta>::iterator arest = listaAdj[i].listaAresta.begin(); arest != listaAdj[i].listaAresta.end(); ++a)
+                cout << arest->getIdNo() << endl;
+         }
+    }
+
+}
+
+/* Nao terminado
+bool Grafo::bipartido()
+{
+    int numNo = listaNos.size();
+    int selecionaVert[numNo+1];
+    for (int i = 1; i <= numNo; ++i)
+        selecionaVert[i] = -1;
+
+    //O loop faz uma busca em largura, e tenta selecionar 2 grupos, provando a bipartilidade.
+    for (int i = 1; i <= V; i++)
+      if (selecionaVert[i] == -1)
+        if (tenta2ColorirGrafo(i, selecionaVert) == false)
+           return false;
+
+     return true;
+
+}
+*/
+
+void Grafo::sequenciaGraus()
+{
+    for (std::vector<No>::iterator it = listaAdj.begin(); it != listaAdj.end(); ++it) {
+            cout << it->getGrau() << " ";
+    }
+}
+
+

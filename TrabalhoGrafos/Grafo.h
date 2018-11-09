@@ -12,8 +12,10 @@ class Grafo{
         void removerNo(int id);
         int ordemGrafo();
         bool grafoCompleto();
-
-
+        bool grafoKRegularidade(int k);
+        void vizinhacaAberta(int id);
+        void vizinhacaFechada(int id);
+        void sequenciaGraus();
 
 };
 #endif // GRAFO_H_INCLUDED
