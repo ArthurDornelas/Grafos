@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1541973530 source:c:\users\adriana\documents\c++\trabalhografos\main.cpp
+	<iostream>
+	"Grafo.h"
+
+1541973682 c:\users\adriana\documents\c++\trabalhografos\grafo.h
+	<vector>
+	"No.h"
+
+1541973691 c:\users\adriana\documents\c++\trabalhografos\no.h
+	<vector>
+

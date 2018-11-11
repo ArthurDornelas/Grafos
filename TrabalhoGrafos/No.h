@@ -9,6 +9,8 @@ private:
     int grau;
 
 public:
+
+    No();
     No(int id, int grau);
     ~No();
     int getId() ;

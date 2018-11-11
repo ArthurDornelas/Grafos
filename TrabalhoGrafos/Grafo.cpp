@@ -128,11 +128,27 @@ void Grafo::algoritmoPrim()
 
     while(cont < listaAdj.size()){
         std::vector<No>::iterator it = listaAdj[i];
-        menor = it.listaAresta[0].getPesoAresta;
-        for(std::vector<Aresta>::iterator arest = listaAdj[i].listaAresta[1]; arest != listaAdj[i].listaAresta.end(); ++arest){
-            if(arest.)
+        menor = it.listaAresta[0].getPesoAresta; //menor peso de aresta ligante
+        for(std::vector<Aresta>::iterator arest = listaAdj[i].listaAresta.begin(); arest != listaAdj[i].listaAresta.end(); ++arest){
+               bool flag=false;
+            if(arest.getPesoAresta<menor){
+
+            for(k=0;k<tam;k++)
+            {
+                if(arest.GetId ==arvore[k]){
+                    flag = true;
+                }
+            }
+            if(flag =false){
+                menor=Aresta.getPesoAresta
+                arvore[i+1]=arest.idNome;
+                break;
+            }
 
         }
+        arvore[k+1]=it.listaAresta[0].getID
+
+
 
     i++;
     cont++;

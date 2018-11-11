@@ -1,3 +1,8 @@
+No::No()
+{
+    grau=0;
+}
+
 No::No(int ident, int grauNo)
 {
     id = ident;

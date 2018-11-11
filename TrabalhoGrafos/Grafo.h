@@ -2,6 +2,7 @@
 #define GRAFO_H_INCLUDED
 #include <vector>
 #include "No.h"
+#include "Aresta.h"
 
 class Grafo{
     private:

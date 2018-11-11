@@ -4,7 +4,7 @@
 class Aresta{
     private:
         float pesoAresta;
-        int iD_No;
+        int identNo;
     public:
         Aresta();
         ~Aresta();
