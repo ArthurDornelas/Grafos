@@ -1,14 +1,16 @@
 #ifndef GRAFO_H_INCLUDED
 #define GRAFO_H_INCLUDED
+#include <vector>
+#include "No.h"
 
 class Grafo{
     private:
-        vector <No> listaAdj;
+        std::vector <No> listaAdj;
 
     public:
         Grafo();
         ~Grafo();
-        void adcionarNo(int  id);
+        void adicionarNo(int  id);
         void removerNo(int id);
         int ordemGrafo();
         bool grafoCompleto();

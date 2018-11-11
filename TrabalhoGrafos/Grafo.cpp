@@ -3,16 +3,15 @@
 
 void Grafo::adcionarNo(int id, float pesoNo)
 {
-    No no = No();                               //adicionamos o no ao vetor dos vertices
+    No no = No();
     no.setId(id);
     listaAdj.push_back(no);
 }
 
 void Grafo::removerNo (int id)
 {
-    vector <No>::iterator it;                   //Nessa funcao percorremos o a lista de nos no primeiro for ate achar o valor, e depois apagar ele
-    vector <Aresta>::iterator a;                //Nos dois proximos for queremos apagar a ligacao que o no deletado tinha com os outros , fazemos isso verificando se
-                                                //com o if se existe ligacao e pagamos
+    vector <No>::iterator it;
+    vector <Aresta>::iterator a;
     int i=0,j=0;
     for(it = listaAdj.begin() ; it != listaAdj.end(); ++it, i++ ){
         if ( it->getId() == id ){
@@ -33,13 +32,13 @@ void Grafo::removerNo (int id)
 
 int Grafo::ordemGrafo()
 {
-    return listaAdj.size();                 //a ordem do grafo E a quantidade de nos, entao vai ser o tamanho da lista desses.
+    return listaAdj.size();
 }
 
 bool Grafo::grafoCompleto()
 {
-    int n = ordemGrafo();                       //para verificar se o grafo E completo precisamos percorrer o vetor de arestas verificando o
-    int num_Arestas = 0;                             //grau de cada no e verificar com o if se a soma de arestas da n*(n-1)
+    int n = ordemGrafo();
+    int num_Arestas = 0;
     for(int i = 0; i < n; i++) {
         num_Arestas += listaAdj[i].getGrau();
     }
@@ -51,9 +50,8 @@ bool Grafo::grafoCompleto()
 
 bool Grafo::grafoKRegularidade(int k)
 {
-    for (std::vector<No>::iterator it = listaAdj.begin(); it != listaAdj.end(); ++it) { //para um grafo de k regularidade os nos precisam ter o mesmo grau K
-                if(it->getGrau()!=k)                                                       // percorremos o vetor de nos verificando se algum nao tem K como grau
-                                                                                            //e retornar verdadeiro ou falso caso nao tenha
+    for (std::vector<No>::iterator it = listaAdj.begin(); it != listaAdj.end(); ++it) {
+                if(it->getGrau()!=k)
                 {
                     return false;
                 }
@@ -63,12 +61,12 @@ bool Grafo::grafoKRegularidade(int k)
 }
 
 void Grafo::vizinhacaAberta(int id)
-{                                                                       //Para demonstrar a vizinhacaAberta so precisamos mostrar os nos que tem ligacao
-    int i=0;                                                            // com o no principal, fazemos isso percorrendo o vetor de arestas do no desejado
+{
+    int i=0;
     for (std::vector<No>::iterator it = listaAdj.begin(); it != listaAdj.end(); ++it, i++) {
          if( it->getId() == id )
          {
-            for(std::vector<Aresta>::iterator arest = listaAdj[i].listaAresta.begin(); arest != listaAdj[i].listaAresta.end(); ++a)
+            for(std::vector<Aresta>::iterator arest = listaAdj[i].listaAresta.begin(); arest != listaAdj[i].listaAresta.end(); ++arest)
                 cout << arest->getIdNo() << endl;
          }
     }
@@ -77,13 +75,11 @@ void Grafo::vizinhacaAberta(int id)
 void Grafo::vizinhacaFechada(int id)
 {
     int i=0;
-    cout << id << endl;                                         //Para demonstrar a vizinhacaFechada so precisamos mostrar os nos que tem ligacao
-    int i=0;                                                            // com o no principal, fazemos isso percorrendo o vetor de arestas do no desejado
-                                                                    //e acrescentar  o no principal
+    cout << id << endl;
     for (std::vector<No>::iterator it = listaAdj.begin(); it != listaAdj.end(); ++it, i++) {
          if( it->getId() == id )
          {
-            for(std::vector<Aresta>::iterator arest = listaAdj[i].listaAresta.begin(); arest != listaAdj[i].listaAresta.end(); ++a)
+            for(std::vector<Aresta>::iterator arest = listaAdj[i].listaAresta.begin(); arest != listaAdj[i].listaAresta.end(); ++arest)
                 cout << arest->getIdNo() << endl;
          }
     }
@@ -111,9 +107,35 @@ bool Grafo::bipartido()
 
 void Grafo::sequenciaGraus()
 {
-    for (std::vector<No>::iterator it = listaAdj.begin(); it != listaAdj.end(); ++it) { //percorremos o vetor dos vertices e exibimos o grau deles
+    for (std::vector<No>::iterator it = listaAdj.begin(); it != listaAdj.end(); ++it) {
             cout << it->getGrau() << " ";
     }
 }
 
+void Grafo::algoritmoPrim()
+{
+    int menor = -1;
+    int i = 0;
+    int cont = 0;
+
+    // cria vetor para armazenar o id dos nós da árvore
+    int tam =  listaAdj.size();
+    int arvore[tam];
+
+    for(int i=0;i<tam;i++)
+        arvore[i]=-1;
+    // fim - criação vetor arvore
+
+    while(cont < listaAdj.size()){
+        std::vector<No>::iterator it = listaAdj[i];
+        menor = it.listaAresta[0].getPesoAresta;
+        for(std::vector<Aresta>::iterator arest = listaAdj[i].listaAresta[1]; arest != listaAdj[i].listaAresta.end(); ++arest){
+            if(arest.)
+
+        }
+
+    i++;
+    cont++;
+    }
+}
 
