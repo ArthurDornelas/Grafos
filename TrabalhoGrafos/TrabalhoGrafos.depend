@@ -3,10 +3,28 @@
 	<iostream>
 	"Grafo.h"
 
+1541973691 
+
 1541973682 c:\users\adriana\documents\c++\trabalhografos\grafo.h
 	<vector>
 	"No.h"
 
 1541973691 c:\users\adriana\documents\c++\trabalhografos\no.h
 	<vector>
+
+1542029227 source:/home/sasaoka/projetos/grafos/Grafos/TrabalhoGrafos/main.cpp
+	<iostream>
+	"Grafo.h"
+
+1542028561 /home/sasaoka/projetos/grafos/Grafos/TrabalhoGrafos/Grafo.h
+	<vector>
+	"No.h"
+	"Aresta.h"
+
+1542029627 /home/sasaoka/projetos/grafos/Grafos/TrabalhoGrafos/No.h
+	<vector>
+	"Aresta.h"
+
+1542029647 /home/sasaoka/projetos/grafos/Grafos/TrabalhoGrafos/Aresta.h
+	"No.h"
 

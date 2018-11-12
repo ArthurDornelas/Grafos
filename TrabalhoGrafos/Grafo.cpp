@@ -1,7 +1,7 @@
-#include <vector>
-
-
-void Grafo::adcionarNo(int id, float pesoNo)
+#include "Grafo.h"
+#include "No.h"
+#include "No.cpp"
+void Grafo::adicionarNo(int id, float pesoNo)
 {
     No no = No();
     no.setId(id);
@@ -155,3 +155,15 @@ void Grafo::algoritmoPrim()
     }
 }
 
+void Grafo::imprimiGrafo(){
+    int i=0,j=0;
+
+    for(std::vector<No>::iterator it = listaNos.begin(); it != listaNos.end(); ++it,i++){
+        cout << listaNos[i].getID();
+         for(vector <Aresta>::iterator arest = listaNos[i].listaAresta.begin(); arest != listaNos[i].listaAresta.end(); arest++,j++ ){
+            cout << " -> " << listaNos[i].listaAresta[j].getIDNo();
+         }
+    }
+
+
+}

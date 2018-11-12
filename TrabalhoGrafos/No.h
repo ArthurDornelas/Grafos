@@ -1,7 +1,7 @@
 #ifndef NO_H_INCLUDED
 #define NO_H_INCLUDED
 #include <vector>
-
+#include "Aresta.h"
 class No{
 
 private:
@@ -13,7 +13,7 @@ public:
     No();
     No(int id, int grau);
     ~No();
-    int getId() ;
+    int getId();
     int getGrau();
     void setId(int id);
     void setGrau(int g);

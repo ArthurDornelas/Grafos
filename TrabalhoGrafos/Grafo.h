@@ -9,9 +9,8 @@ class Grafo{
         std::vector <No> listaAdj;
 
     public:
-        Grafo();
-        ~Grafo();
-        void adicionarNo(int  id);
+
+        void adicionarNo(int id, float pesoNo);
         void removerNo(int id);
         int ordemGrafo();
         bool grafoCompleto();
@@ -19,6 +18,7 @@ class Grafo{
         void vizinhacaAberta(int id);
         void vizinhacaFechada(int id);
         void sequenciaGraus();
+        void imprimiGrafo();
 
 };
 #endif // GRAFO_H_INCLUDED

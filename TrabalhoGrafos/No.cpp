@@ -1,3 +1,6 @@
+#include "Aresta.h"
+#include "No.h"
+
 No::No()
 {
     grau=0;
@@ -7,7 +10,7 @@ No::No(int ident, int grauNo)
 {
     id = ident;
     grau = grauNo;
-    vector <Aresta> listaAresta;
+    std::vector <Aresta> listaAresta;
 }
 
 No::~No()
@@ -17,7 +20,7 @@ No::~No()
 
 void No::setGrau(int grauNo)
 {
-    grau = g;
+    grau = grauNo;
 }
 
 int No::getGrau()
@@ -30,9 +33,9 @@ void No::setId(int ident)
     id = ident;
 }
 
-int No::getId() ()
+int No::getId()
 {
-    return iD;
+    return id;
 }
 
 float No::getAresta(int i){
