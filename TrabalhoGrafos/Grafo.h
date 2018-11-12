@@ -19,6 +19,6 @@ class Grafo{
         void vizinhacaFechada(int id);
         void sequenciaGraus();
         void imprimiGrafo();
-
+        void algoritmoPrim();
 };
 #endif // GRAFO_H_INCLUDED

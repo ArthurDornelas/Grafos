@@ -10,7 +10,7 @@ No::No(int ident, int grauNo)
 {
     id = ident;
     grau = grauNo;
-    std::vector <Aresta> listaAresta;
+
 }
 
 No::~No()
@@ -43,7 +43,7 @@ float No::getAresta(int i){
 }
 
 void No::adicionaAresta(int ident, float pesoAresta){
-    Aresta aresta =  Aresta(ident,pesoAresta);
+    Aresta aresta = Aresta(ident,pesoAresta);
     if(ident == id)
         grau += 2;
     else

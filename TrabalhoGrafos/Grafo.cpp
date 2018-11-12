@@ -1,6 +1,7 @@
 #include "Grafo.h"
 #include "No.h"
 #include "No.cpp"
+#include <vector>
 void Grafo::adicionarNo(int id, float pesoNo)
 {
     No no = No();
@@ -10,8 +11,8 @@ void Grafo::adicionarNo(int id, float pesoNo)
 
 void Grafo::removerNo (int id)
 {
-    vector <No>::iterator it;
-    vector <Aresta>::iterator a;
+    std::vector <No>::iterator it;
+    std::vector <Aresta>::iterator a;
     int i=0,j=0;
     for(it = listaAdj.begin() ; it != listaAdj.end(); ++it, i++ ){
         if ( it->getId() == id ){
@@ -22,7 +23,7 @@ void Grafo::removerNo (int id)
     for(it = listaAdj.begin(); it != listaAdj.end(); ++it,i++){
             j = 0;
         for(std::vector<Aresta>::iterator a = listaAdj[i].listaAresta.begin(); a != listaAdj[i].listaAresta.end() && j < listaAdj[i].listaAresta.size() ;   ++a){
-                if(a->getIDNo() == id) {
+                if(a->getIdNo() == id) {
                     listaAdj[i].listaAresta.erase( listaAdj[i].listaAresta.begin() + j );
                 }
                 j++;
@@ -42,7 +43,7 @@ bool Grafo::grafoCompleto()
     for(int i = 0; i < n; i++) {
         num_Arestas += listaAdj[i].getGrau();
     }
-    if(num_arestas == n*(n-1))
+    if(num_Arestas == n*(n-1))
         return true;
     return false;
 
@@ -67,7 +68,7 @@ void Grafo::vizinhacaAberta(int id)
          if( it->getId() == id )
          {
             for(std::vector<Aresta>::iterator arest = listaAdj[i].listaAresta.begin(); arest != listaAdj[i].listaAresta.end(); ++arest)
-                cout << arest->getIdNo() << endl;
+                std::cout << arest->getIdNo() << std::endl;
          }
     }
 }
@@ -75,12 +76,12 @@ void Grafo::vizinhacaAberta(int id)
 void Grafo::vizinhacaFechada(int id)
 {
     int i=0;
-    cout << id << endl;
+    std::cout << id << std::endl;
     for (std::vector<No>::iterator it = listaAdj.begin(); it != listaAdj.end(); ++it, i++) {
          if( it->getId() == id )
          {
             for(std::vector<Aresta>::iterator arest = listaAdj[i].listaAresta.begin(); arest != listaAdj[i].listaAresta.end(); ++arest)
-                cout << arest->getIdNo() << endl;
+                std::cout << arest->getIdNo() << std::endl;
          }
     }
 
@@ -108,10 +109,10 @@ bool Grafo::bipartido()
 void Grafo::sequenciaGraus()
 {
     for (std::vector<No>::iterator it = listaAdj.begin(); it != listaAdj.end(); ++it) {
-            cout << it->getGrau() << " ";
+            std::cout << it->getGrau() << " ";
     }
 }
-
+/*
 void Grafo::algoritmoPrim()
 {
     int menor = -1;
@@ -154,15 +155,16 @@ void Grafo::algoritmoPrim()
     cont++;
     }
 }
-
+*/
 void Grafo::imprimiGrafo(){
     int i=0,j=0;
 
-    for(std::vector<No>::iterator it = listaNos.begin(); it != listaNos.end(); ++it,i++){
-        cout << listaNos[i].getID();
-         for(vector <Aresta>::iterator arest = listaNos[i].listaAresta.begin(); arest != listaNos[i].listaAresta.end(); arest++,j++ ){
-            cout << " -> " << listaNos[i].listaAresta[j].getIDNo();
+    for(std::vector<No>::iterator it = listaAdj.begin(); it != listaAdj.end(); ++it,i++){
+        std::cout << listaAdj[i].getId();
+         for(std::vector <Aresta>::iterator arest = listaAdj[i].listaAresta.begin(); arest != listaAdj[i].listaAresta.end(); arest++,j++ ){
+            std::cout << " -> " << listaAdj[i].listaAresta[j].getIdNo();
          }
+         std::cout << std::endl;
     }
 
 

@@ -9,7 +9,7 @@ private:
     int grau;
 
 public:
-
+    std::vector <Aresta> listaAresta;
     No();
     No(int id, int grau);
     ~No();
@@ -19,7 +19,7 @@ public:
     void setGrau(int g);
     void adicionaAresta(int id,float pesoA,bool arco);
     void adicionaAresta(int id,float pesoA);
-    void removeAresta(int id, bool arco);
+    void removeAresta(int id);
     float getAresta(int index);
 
 };
