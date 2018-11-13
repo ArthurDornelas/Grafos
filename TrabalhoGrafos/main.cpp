@@ -37,12 +37,12 @@ int main() {
       cout << grafo->retornaGrauNo(4) << endl;
       cout<<endl;
       cout << grafo->ordemGrafo() << endl;
-      grafo->adicionarNo(1,0);
       cout<<endl;
       cout << grafo->ordemGrafo() << endl;
       cout<<endl;
       grafo->vizinhancaAberta(1);
       cout<<endl;
+      grafo->sequenciaGraus();
 
     return 0;
 }

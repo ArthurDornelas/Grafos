@@ -202,7 +202,7 @@ bool Grafo::bipartido()
 void Grafo::sequenciaGraus()
 {
     for (std::vector<No>::iterator it = listaAdj.begin(); it != listaAdj.end(); ++it) {
-            std::cout << it->getGrau() << " ";
+            std::cout << "No " << it->getId() << " - " << it->getGrau() << "  ";
     }
 }
 /*
