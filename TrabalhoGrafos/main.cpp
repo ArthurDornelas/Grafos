@@ -43,6 +43,27 @@ int main() {
       grafo->vizinhancaAberta(1);
       cout<<endl;
       grafo->sequenciaGraus();
+      cout<<endl;
+      cout<<endl;
+      if(grafo->grafoCompleto() == true)
+        cout << "Completo";
+      else
+        cout << "Nao Completo";
+      cout<<endl;
+      cout<<endl;
+       grafo->adicionarArestaNos(1,2,0);
+        grafo->adicionarArestaNos(4,2,5);
+         grafo->adicionarArestaNos(4,1,5);
+             grafo->adicionarArestaNos(1,3,5);
+             grafo->adicionarArestaNos(4,3,5);
+      if(grafo->grafoCompleto() == true)
+        cout << "Completo";
+      else
+        cout << "Nao Completo";
+      cout<<endl;
+      cout<<endl;
+
+
 
     return 0;
 }
