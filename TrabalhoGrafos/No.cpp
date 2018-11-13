@@ -55,6 +55,15 @@ void No::adicionaAresta(int ident, float pesoAresta){
 
 void No::removeAresta(int ident)
 {
+
+    for(vector<Aresta>::iterator a = listaAresta.begin(); a != listaAresta.end();   ++a){
+              if(a->getIdNo() == ident) {
+                  listaAresta.erase(a);
+                  break;
+             }
+
+   }
+
     if(ident == id)
         grau -= 2;
     else

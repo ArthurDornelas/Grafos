@@ -29,5 +29,8 @@ int main() {
     //else
       //  cout << "Oh fuck";
 
+      grafo->removeAresta(1,2);
+      grafo->imprimiGrafo();
+
     return 0;
 }
