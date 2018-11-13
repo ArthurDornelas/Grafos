@@ -31,6 +31,15 @@ int main() {
 
       grafo->removeAresta(1,2);
       grafo->imprimiGrafo();
+      cout << grafo->retornaGrauNo(1) << endl;
+      cout << grafo->retornaGrauNo(2) << endl;
+      cout << grafo->retornaGrauNo(3) << endl;
+      cout << grafo->retornaGrauNo(4) << endl;
+      cout<<endl;
+      cout << grafo->ordemGrafo() << endl;
+      grafo->adicionarNo(1,0);
+      cout<<endl;
+      cout << grafo->ordemGrafo() << endl;
 
     return 0;
 }

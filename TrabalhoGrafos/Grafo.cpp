@@ -97,6 +97,18 @@ int Grafo::ordemGrafo()
     return listaAdj.size();
 }
 
+int Grafo::retornaGrauNo(int id)
+{
+
+    for (std::vector<No>::iterator it = listaAdj.begin(); it != listaAdj.end(); ++it) {
+        if( it->getId() == id ){
+            return it->getGrau();
+        }
+    }
+    cout << "Nao existe esse NO no Grafo."<<endl;
+
+}
+
 bool Grafo::vizinho(int id1, int id2)
 {
     for (std::vector<No>::iterator it = listaAdj.begin(); it != listaAdj.end(); ++it){

@@ -18,6 +18,7 @@ class Grafo{
         void adicionaAresta(int id1,int id2, float peso);
         bool estaNoGrafo(int index);
         int ordemGrafo();
+        int retornaGrauNo(int id);
         bool vizinho(int id1, int id2);
         bool grafoCompleto();
         bool grafoKRegularidade(int k);
