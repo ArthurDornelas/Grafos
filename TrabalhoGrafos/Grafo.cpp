@@ -2,6 +2,8 @@
 #include "No.h"
 #include "No.cpp"
 #include <vector>
+using namespace std;
+
 void Grafo::adicionarNo(int id, float pesoNo)
 {
     No no = No();
@@ -31,9 +33,81 @@ void Grafo::removerNo (int id)
     }
 }
 
+void Grafo::removeAresta(int id1,int id2)
+{
+    if(estaNoGrafo(id1) && estaNoGrafo(id2)){
+        if(vizinho(id1,id2)){
+        for (std::vector<No>::iterator it = listaAdj.begin(); it != listaAdj.end(); ++it) {
+             if( it->getId() == id1 )
+                    it->removeAresta(id2);
+             if( it->getId() == id2)
+                    it->removeAresta(id1);
+        }
+           }
+
+    } else {
+         cout << "Um ou mais NOS nao existem, impossivel remover a ARESTA." << endl;
+    }
+
+}
+
+void Grafo::adicionarArestaNos(int id , int id2,int peso)
+{
+
+     if(estaNoGrafo(id) == true){
+
+        if(estaNoGrafo(id2) == true){
+
+           for (std::vector<No>::iterator it = listaAdj.begin(); it != listaAdj.end(); ++it){
+
+              if(id != id2)  {
+                    if(it->getId() == id){
+                        it->adicionaAresta(id2,peso);
+                    }
+
+                    if(it->getId() == id2){
+                        it->adicionaAresta(id,peso);
+                    }
+              }
+           }
+        }
+        else
+            cout << "Os vertices nao existem.";
+     }
+
+     else
+        cout << "Os vertices nao existem.";
+
+
+}
+
+
+bool Grafo::estaNoGrafo(int i)
+{
+    for (std::vector<No>::iterator it = listaAdj.begin(); it != listaAdj.end(); ++it) {
+        if( it->getId() == i ){
+            return true;
+        }
+    }
+    return false;
+}
+
 int Grafo::ordemGrafo()
 {
     return listaAdj.size();
+}
+
+bool Grafo::vizinho(int id1, int id2)
+{
+    for (std::vector<No>::iterator it = listaAdj.begin(); it != listaAdj.end(); ++it){
+        if(it->getId() == id1 ){
+            return it->eVizinho(id2);
+        }
+        if(it->getId() == id2 ){
+            return it->eVizinho(id1);
+        }
+    }
+    return false;
 }
 
 bool Grafo::grafoCompleto()
@@ -157,12 +231,13 @@ void Grafo::algoritmoPrim()
 }
 */
 void Grafo::imprimiGrafo(){
-    int i=0,j=0;
 
-    for(std::vector<No>::iterator it = listaAdj.begin(); it != listaAdj.end(); ++it,i++){
-        std::cout << listaAdj[i].getId();
-         for(std::vector <Aresta>::iterator arest = listaAdj[i].listaAresta.begin(); arest != listaAdj[i].listaAresta.end(); arest++,j++ ){
-            std::cout << " -> " << listaAdj[i].listaAresta[j].getIdNo();
+
+    for(std::vector<No>::iterator it = listaAdj.begin(); it != listaAdj.end(); ++it){
+        int j=0;
+        std::cout << it->getId();
+         for(std::vector <Aresta>::iterator arest = it->listaAresta.begin(); arest != it->listaAresta.end(); arest++,j++){
+            std::cout << " -> " << it->listaAresta[j].getIdNo();
          }
          std::cout << std::endl;
     }

@@ -1,5 +1,6 @@
 #include "Aresta.h"
 #include "No.h"
+using namespace std;
 
 No::No()
 {
@@ -45,10 +46,11 @@ float No::getAresta(int i){
 void No::adicionaAresta(int ident, float pesoAresta){
     Aresta aresta = Aresta(ident,pesoAresta);
     if(ident == id)
-        grau += 2;
+       grau += 2;
     else
-        grau += 1;
+       grau += 1;
     listaAresta.push_back(aresta);
+
 }
 
 void No::removeAresta(int ident)
@@ -57,5 +59,14 @@ void No::removeAresta(int ident)
         grau -= 2;
     else
         grau -= 1;
+}
+
+bool No::eVizinho(int id)
+{
+    for(std::vector <Aresta>::iterator it = listaAresta.begin(); it != listaAresta.end(); it++ ){
+        if(id == it->getIdNo() ){
+            return true;
+        }
+    }
 }
 
