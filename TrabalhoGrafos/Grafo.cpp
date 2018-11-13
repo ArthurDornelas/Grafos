@@ -147,19 +147,26 @@ bool Grafo::grafoKRegularidade(int k)
 
 }
 
-void Grafo::vizinhacaAberta(int id)
+void Grafo::vizinhancaAberta(int id)
 {
     int i=0;
     for (std::vector<No>::iterator it = listaAdj.begin(); it != listaAdj.end(); ++it, i++) {
          if( it->getId() == id )
          {
-            for(std::vector<Aresta>::iterator arest = listaAdj[i].listaAresta.begin(); arest != listaAdj[i].listaAresta.end(); ++arest)
+            if(it->listaAresta.size() >= 1){
+                for(std::vector<Aresta>::iterator arest = listaAdj[i].listaAresta.begin(); arest != listaAdj[i].listaAresta.end(); ++arest)
                 std::cout << arest->getIdNo() << std::endl;
+                break;
+            }
+            else {
+                cout << "Vizinhanca aberta sem nos" << endl;
+                break;
+            }
          }
     }
 }
 
-void Grafo::vizinhacaFechada(int id)
+void Grafo::vizinhancaFechada(int id)
 {
     int i=0;
     std::cout << id << std::endl;

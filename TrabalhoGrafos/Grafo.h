@@ -22,8 +22,8 @@ class Grafo{
         bool vizinho(int id1, int id2);
         bool grafoCompleto();
         bool grafoKRegularidade(int k);
-        void vizinhacaAberta(int id);
-        void vizinhacaFechada(int id);
+        void vizinhancaAberta(int id);
+        void vizinhancaFechada(int id);
         void sequenciaGraus();
         void imprimiGrafo();
         void algoritmoPrim();

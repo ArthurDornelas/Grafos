@@ -40,6 +40,9 @@ int main() {
       grafo->adicionarNo(1,0);
       cout<<endl;
       cout << grafo->ordemGrafo() << endl;
+      cout<<endl;
+      grafo->vizinhancaAberta(1);
+      cout<<endl;
 
     return 0;
 }
