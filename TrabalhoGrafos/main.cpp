@@ -16,23 +16,27 @@ int main() {
 
 
 
-    if(grafo->estaNoGrafo(1) == true)
-        cout << "Esta no grafo";
-    else
-        cout << "Nao Esta";
-    cout << endl;
+    //if(grafo->estaNoGrafo(1) == true)
+      //  cout << "Esta no grafo";
+    //else
+    //    cout << "Nao Esta";
+   // cout << endl;
 
     grafo->adicionarArestaNos(1,2,5);
     grafo->adicionarArestaNos(2,3,5);
+    grafo->adicionarArestaNos(3,4,5);
+    grafo->adicionarArestaNos(2,4,1);
 
     grafo->imprimiGrafo();
+
+    grafo->algoritmoPrim();
 
     //if(grafo->vizinho(1,2) == true)
       //  cout << "Thats It";
     //else
       //  cout << "Oh fuck";
 
-      grafo->removeAresta(1,2);
+      /*grafo->removeAresta(1,2);
       grafo->imprimiGrafo();
       cout << grafo->retornaGrauNo(1) << endl;
       cout << grafo->retornaGrauNo(2) << endl;
@@ -71,7 +75,7 @@ int main() {
     Menu* menu = new Menu(grafo);
     menu->inicia();
 
-
+    */
 
     return 0;
 }

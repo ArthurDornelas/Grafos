@@ -2,6 +2,7 @@
 #include "No.h"
 #include "No.cpp"
 #include <vector>
+#define INF 99999;
 using namespace std;
 
 void Grafo::adicionarNo(int id)
@@ -205,10 +206,86 @@ void Grafo::sequenciaGraus()
             std::cout << "No " << it->getId() << " - " << it->getGrau() << "  ";
     }
 }
+
+
+void Grafo::algoritmoPrim()
+{
+    int posListaAdj = 0;
+
+    int cont = 0;
+
+    // cria vetor para armazenar o id dos nós da árvore
+   // int tam =  listaAdj.size();
+    std::vector <No> arvore;
+
+    //for(int i=0;i<tam;i++)
+     //   arvore[i]=-1;
+    // fim - criação vetor arvore
+
+    //std::vector<No>::iterator it = listaAdj.begin();
+    //cout << endl<<it->getId()<<endl;
+
+    arvore.push_back(listaAdj[0]);
+    //cout << endl<<arvore[0].getId()<<endl;
+
+
+    while(cont < listaAdj.size()){
+        int menor = INF;
+        int idNo = -1;
+        int arestaMenor = -1;
+        //loop para ver qual a menor aresta
+        int contAresta = 0;
+        for(std::vector<Aresta>::iterator arest = listaAdj[posListaAdj].listaAresta.begin(); arest != listaAdj[posListaAdj].listaAresta.end(); ++arest){
+
+            //cout << endl<<arest->getIdNo()<<endl;
+            bool flag=false;
+            if(arest->getPesoAresta() <= menor){
+
+                for (std::vector<No>::iterator arv = arvore.begin(); arv != arvore.end(); ++arv)  // verifica se o id do No ja esta na arvore
+                {
+                    if(arest->getIdNo() == arv->getId())
+                        flag = true;
+                }
+                if(flag == false){
+                    menor = arest->getPesoAresta(); //recebe o peso da aresta
+                    arestaMenor = contAresta;
+                }
+
+            }
+            contAresta++;
+
+        }
+        //cout << endl<<arestaMenor<<endl;
+
+        idNo = listaAdj[posListaAdj].listaAresta[arestaMenor].getIdNo();
+        //cout << endl<<idNo<<endl;
+        //cout << endl<<posListaAdj<<endl;
+        int i = 0;
+        for (std::vector<No>::iterator it = listaAdj.begin(); it != listaAdj.end(); ++it){
+               if(idNo == it->getId()){
+                    posListaAdj = i;
+                    arvore.push_back(listaAdj[i]);
+                    break;
+               }
+                i++;
+        }
+
+
+    cont++;
+    }
+
+    for (std::vector<No>::iterator no = arvore.begin(); no != arvore.end(); ++no){
+           cout << no->getId() << "  ";
+
+   }
+
+}
+
 /*
 void Grafo::algoritmoPrim()
 {
-    int menor = -1;
+
+    float menor = -1;
     int i = 0;
     int cont = 0;
 
@@ -219,37 +296,52 @@ void Grafo::algoritmoPrim()
     for(int i=0;i<tam;i++)
         arvore[i]=-1;
     // fim - criação vetor arvore
-
+    int j =0;
+    int k=0;
+    No no = listaAdj[0];
+    Aresta arest = no.listaAresta[0];
     while(cont < listaAdj.size()){
-        std::vector<No>::iterator it = listaAdj[i];
-        menor = it.listaAresta[0].getPesoAresta; //menor peso de aresta ligante
-        for(std::vector<Aresta>::iterator arest = listaAdj[i].listaAresta.begin(); arest != listaAdj[i].listaAresta.end(); ++arest){
-               bool flag=false;
-            if(arest.getPesoAresta<menor){
+        int z=0;
+        for(  No no = listaAdj[z]; z<  listaAdj.size();z++)
+            if( no.getId() == arest.getIdNo() )
+                No no = listaAdj[z];
+            menor = no.listaAresta[0].getPesoAresta();
+            for(Aresta arest = no.listaAresta[0]; j < no.listaAresta.size(); i++,j++){
+                    bool flag=false;
+                        if(arest.getPesoAresta()<menor){
 
-            for(k=0;k<tam;k++)
-            {
-                if(arest.GetId ==arvore[k]){
-                    flag = true;
+                            for(k=0;k<tam;k++)
+                            {
+                                if(arest.getIdNo() ==arvore[k]){
+                                flag = true;
+                                }
+                            }
+                            if(flag ==true){
+                                menor=arest.getPesoAresta();
+                                arvore[k+1]=arest.getIdNo();
+                                break;
+                            }
+
+                        }
+                        if(flag==false){
+                            arvore[k+1]=no.listaAresta[0].getIdNo();
+                            arest =no.listaAresta[0];
+                        }
                 }
-            }
-            if(flag =false){
-                menor=Aresta.getPesoAresta
-                arvore[i+1]=arest.idNome;
-                break;
-            }
-
-        }
-        arvore[k+1]=it.listaAresta[0].getID
-
-
-
-    i++;
-    cont++;
+        cont++;
+        k++;
+    }
+    for(int i=0;i<listaAdj.size();i++){
+        cout <<endl;
+        cout<<arvore[i]<<" ";
     }
 }
+
+
 */
-void Grafo::imprimiGrafo(){
+
+void Grafo::imprimiGrafo()
+{
 
 
     for(std::vector<No>::iterator it = listaAdj.begin(); it != listaAdj.end(); ++it){
