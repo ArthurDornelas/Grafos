@@ -4,7 +4,7 @@
 #include <vector>
 using namespace std;
 
-void Grafo::adicionarNo(int id, float pesoNo)
+void Grafo::adicionarNo(int id)
 {
     No no = No();
     no.setId(id);

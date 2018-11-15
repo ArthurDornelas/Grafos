@@ -8,10 +8,10 @@ int main() {
 
     cout<< "teste" << endl;
     Grafo* grafo = new Grafo();
-    grafo->adicionarNo(1,0);
-    grafo->adicionarNo(2,0);
-    grafo->adicionarNo(3,0);
-    grafo->adicionarNo(4,0);
+    grafo->adicionarNo(1);
+    grafo->adicionarNo(2);
+    grafo->adicionarNo(3);
+    grafo->adicionarNo(4);
     grafo->imprimiGrafo();
 
 

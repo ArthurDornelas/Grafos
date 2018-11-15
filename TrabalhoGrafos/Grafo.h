@@ -12,7 +12,7 @@ class Grafo{
     public:
 
         void adicionarArestaNos(int id , int id2,int peso);
-        void adicionarNo(int id, float pesoNo);
+        void adicionarNo(int id);
         void removerNo(int id);
         void removeAresta(int id1, int id2);
         void adicionaAresta(int id1,int id2, float peso);

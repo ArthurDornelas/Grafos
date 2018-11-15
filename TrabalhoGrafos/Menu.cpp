@@ -88,19 +88,16 @@ void Menu::opcao2()
     cin >> i;
     if (i == 1)
     {
-        cout << "Digite o id do no que será adicionado" << endl;
+        cout << "Digite o id do no que sera adicionado" << endl;
         int id;
         cin >> id;
-        cout << "Digite o peso do no" << endl;
-        int pesoid;
-        cin >> pesoid;
-        grafoUtilizado->adicionarNo(id, pesoid);
-        cout << "Nó adicionado" << endl;
+        grafoUtilizado->adicionarNo(id);
+        cout << "No adicionado" << endl;
 
     }
     else if (i == 2)
     {
-        cout << "Digite o id do no que será excluido" << endl;
+        cout << "Digite o id do no que sera excluido" << endl;
         int id;
         cin >> id;
         grafoUtilizado->removerNo(id);
@@ -136,7 +133,7 @@ void Menu::opcao3()
     }
     else if (i == 2)
     {
-        cout << "Digite o id da aresta que sera exclúido" << endl;
+        cout << "Digite o id da aresta que sera excluido" << endl;
         int id1;
         int id2;
         cout << "Digite os dois nos que terao a aresta removida" << endl;
