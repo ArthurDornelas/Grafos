@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Grafo.h"
 #include "Grafo.cpp"
+#include "Menu.h"
 using namespace std;
 
 int main() {
@@ -12,6 +13,8 @@ int main() {
     grafo->adicionarNo(3,0);
     grafo->adicionarNo(4,0);
     grafo->imprimiGrafo();
+
+
 
     if(grafo->estaNoGrafo(1) == true)
         cout << "Esta no grafo";
@@ -62,6 +65,11 @@ int main() {
         cout << "Nao Completo";
       cout<<endl;
       cout<<endl;
+
+    cout << "Teste do menu" << endl;
+
+    Menu* menu = new Menu(grafo);
+    menu->inicia();
 
 
 
