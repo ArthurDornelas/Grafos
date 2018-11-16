@@ -211,23 +211,9 @@ void Grafo::sequenciaGraus()
 void Grafo::algoritmoPrim()
 {
     int posListaAdj = 0;
-
     int cont = 0;
-
-    // cria vetor para armazenar o id dos nós da árvore
-   // int tam =  listaAdj.size();
     std::vector <No> arvore;
-
-    //for(int i=0;i<tam;i++)
-     //   arvore[i]=-1;
-    // fim - criação vetor arvore
-
-    //std::vector<No>::iterator it = listaAdj.begin();
-    //cout << endl<<it->getId()<<endl;
-
     arvore.push_back(listaAdj[0]);
-    //cout << endl<<arvore[0].getId()<<endl;
-
 
     while(cont < listaAdj.size()){
         int menor = INF;
@@ -236,8 +222,6 @@ void Grafo::algoritmoPrim()
         //loop para ver qual a menor aresta
         int contAresta = 0;
         for(std::vector<Aresta>::iterator arest = listaAdj[posListaAdj].listaAresta.begin(); arest != listaAdj[posListaAdj].listaAresta.end(); ++arest){
-
-            //cout << endl<<arest->getIdNo()<<endl;
             bool flag=false;
             if(arest->getPesoAresta() <= menor){
 
@@ -255,11 +239,7 @@ void Grafo::algoritmoPrim()
             contAresta++;
 
         }
-        //cout << endl<<arestaMenor<<endl;
-
         idNo = listaAdj[posListaAdj].listaAresta[arestaMenor].getIdNo();
-        //cout << endl<<idNo<<endl;
-        //cout << endl<<posListaAdj<<endl;
         int i = 0;
         for (std::vector<No>::iterator it = listaAdj.begin(); it != listaAdj.end(); ++it){
                if(idNo == it->getId()){
@@ -269,76 +249,14 @@ void Grafo::algoritmoPrim()
                }
                 i++;
         }
-
-
     cont++;
     }
 
     for (std::vector<No>::iterator no = arvore.begin(); no != arvore.end(); ++no){
            cout << no->getId() << "  ";
-
    }
-
 }
 
-/*
-void Grafo::algoritmoPrim()
-{
-
-    float menor = -1;
-    int i = 0;
-    int cont = 0;
-
-    // cria vetor para armazenar o id dos nós da árvore
-    int tam =  listaAdj.size();
-    int arvore[tam];
-
-    for(int i=0;i<tam;i++)
-        arvore[i]=-1;
-    // fim - criação vetor arvore
-    int j =0;
-    int k=0;
-    No no = listaAdj[0];
-    Aresta arest = no.listaAresta[0];
-    while(cont < listaAdj.size()){
-        int z=0;
-        for(  No no = listaAdj[z]; z<  listaAdj.size();z++)
-            if( no.getId() == arest.getIdNo() )
-                No no = listaAdj[z];
-            menor = no.listaAresta[0].getPesoAresta();
-            for(Aresta arest = no.listaAresta[0]; j < no.listaAresta.size(); i++,j++){
-                    bool flag=false;
-                        if(arest.getPesoAresta()<menor){
-
-                            for(k=0;k<tam;k++)
-                            {
-                                if(arest.getIdNo() ==arvore[k]){
-                                flag = true;
-                                }
-                            }
-                            if(flag ==true){
-                                menor=arest.getPesoAresta();
-                                arvore[k+1]=arest.getIdNo();
-                                break;
-                            }
-
-                        }
-                        if(flag==false){
-                            arvore[k+1]=no.listaAresta[0].getIdNo();
-                            arest =no.listaAresta[0];
-                        }
-                }
-        cont++;
-        k++;
-    }
-    for(int i=0;i<listaAdj.size();i++){
-        cout <<endl;
-        cout<<arvore[i]<<" ";
-    }
-}
-
-
-*/
 
 void Grafo::imprimiGrafo()
 {
