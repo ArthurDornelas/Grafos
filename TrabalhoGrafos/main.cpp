@@ -12,7 +12,11 @@ int main() {
     grafo->adicionarNo(2);
     grafo->adicionarNo(3);
     grafo->adicionarNo(4);
+    grafo->adicionarNo(5);
+    grafo->adicionarNo(6);
+    grafo->adicionarNo(7);
     grafo->imprimiGrafo();
+    cout<< endl;
 
 
 
@@ -22,12 +26,22 @@ int main() {
     //    cout << "Nao Esta";
    // cout << endl;
 
-    grafo->adicionarArestaNos(1,2,5);
-    grafo->adicionarArestaNos(2,3,5);
-    grafo->adicionarArestaNos(3,4,5);
-    grafo->adicionarArestaNos(2,4,1);
+    grafo->adicionarArestaNos(1,2,7);
+    grafo->adicionarArestaNos(1,4,5);
+    grafo->adicionarArestaNos(2,4,9);
+     grafo->adicionarArestaNos(2,5,7);
+      grafo->adicionarArestaNos(3,5,5);
+       grafo->adicionarArestaNos(4,5,15);
+        grafo->adicionarArestaNos(4,6,6);
+         grafo->adicionarArestaNos(5,6,8);
+          grafo->adicionarArestaNos(5,7,9);
+           grafo->adicionarArestaNos(6,7,11);
+
+
+   // grafo->adicionarArestaNos(2,4,1);
 
     grafo->imprimiGrafo();
+    cout<<endl;
 
     grafo->algoritmoPrim();
 

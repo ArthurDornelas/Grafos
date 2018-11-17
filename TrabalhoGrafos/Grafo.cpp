@@ -210,36 +210,53 @@ void Grafo::sequenciaGraus()
 
 void Grafo::algoritmoPrim()
 {
+    float sTotalAresta[listaAdj.size()-1]; //Numero de arestas tem que ser n-1.
+    float sTotAresta = 0;
     int posListaAdj = 0;
     int cont = 0;
     std::vector <No> arvore;
     arvore.push_back(listaAdj[0]);
 
-    while(cont < listaAdj.size()){
+    while(arvore.size() != listaAdj.size()){
+
         int menor = INF;
         int idNo = -1;
         int arestaMenor = -1;
-        //loop para ver qual a menor aresta
-        int contAresta = 0;
-        for(std::vector<Aresta>::iterator arest = listaAdj[posListaAdj].listaAresta.begin(); arest != listaAdj[posListaAdj].listaAresta.end(); ++arest){
-            bool flag=false;
-            if(arest->getPesoAresta() <= menor){
+        int posNoArvoreMenor = -1; //posicao que está o nó que contem a menor aresta
 
-                for (std::vector<No>::iterator arv = arvore.begin(); arv != arvore.end(); ++arv)  // verifica se o id do No ja esta na arvore
-                {
-                    if(arest->getIdNo() == arv->getId())
-                        flag = true;
-                }
-                if(flag == false){
-                    menor = arest->getPesoAresta(); //recebe o peso da aresta
-                    arestaMenor = contAresta;
-                }
+        //for que roda os nós que já estão na árvore
+        int posArvore = 0; // posicao atual da arvore
+        for(std::vector<No>::iterator arv = arvore.begin(); arv != arvore.end(); ++arv){
 
+            //loop para ver qual a menor aresta
+            int contAresta = 0; //posicao atual da aresta
+            for(std::vector<Aresta>::iterator arest = arvore[posArvore].listaAresta.begin(); arest != arvore[posArvore].listaAresta.end(); ++arest){
+                // Verifica se é um ciclo ou não
+                bool ciclo = false;
+                if(arvore.size() > 0){
+                   for(std::vector<No>::iterator noArv = arvore.begin(); noArv != arvore.end(); ++noArv) {
+
+                        if(arest->getIdNo() == noArv->getId()){
+                            ciclo = true;
+                            break;
+                        }
+                   }
+                }
+                // Se nao for ciclo, entra neste IF, se for ele apenas troca para a proxima aresta
+                if (ciclo == false){
+
+                        if(arest->getPesoAresta() < menor) {
+                            menor = arest->getPesoAresta(); //recebe o peso da aresta
+                            arestaMenor = contAresta;
+                            posNoArvoreMenor = posArvore;
+                        }
+                }
+                contAresta++;
             }
-            contAresta++;
-
+            posArvore++;
         }
-        idNo = listaAdj[posListaAdj].listaAresta[arestaMenor].getIdNo();
+
+        idNo = arvore[posNoArvoreMenor].listaAresta[arestaMenor].getIdNo();
         int i = 0;
         for (std::vector<No>::iterator it = listaAdj.begin(); it != listaAdj.end(); ++it){
                if(idNo == it->getId()){
@@ -247,9 +264,9 @@ void Grafo::algoritmoPrim()
                     arvore.push_back(listaAdj[i]);
                     break;
                }
-                i++;
+            i++;
         }
-    cont++;
+        cont++;
     }
 
     for (std::vector<No>::iterator no = arvore.begin(); no != arvore.end(); ++no){

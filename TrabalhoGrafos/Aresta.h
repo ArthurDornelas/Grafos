@@ -11,7 +11,7 @@ class Aresta{
         Aresta(int idNo,float pesoA){ identNo = idNo; pesoAresta = pesoA; };
         float getPesoAresta(){ return this->pesoAresta; };
         int getIdNo(){ return this->identNo; };
-        int setIdNo(int id) {this->identNo = id; };
+        void setIdNo(int id) {this->identNo = id; };
         void setPesoAresta(float peso){ this->pesoAresta = peso; };
 };
 
