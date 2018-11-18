@@ -15,6 +15,7 @@ class Grafo{
 
         std::vector <No> arvore;
         std::vector <Aresta> arestasArvore;
+        std::vector <Aresta> auxArestasArvore;
         std::vector <Cluster> clusters;
         void adicionarArestaNos(int id , int id2,int peso);
         void adicionarNo(int id);
@@ -33,5 +34,6 @@ class Grafo{
         void imprimiGrafo();
         void algoritmoPrim();
         void clusterizacaoGuloso();
+        void criaCluster(No no);
 };
 #endif // GRAFO_H_INCLUDED

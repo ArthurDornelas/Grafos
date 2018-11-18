@@ -301,32 +301,34 @@ void Grafo::clusterizacaoGuloso()
     //Inicializa dois nós como os primeiros centroides, fazendo k=2 (esses dois nós tem que se ligar no agoritmo de Prim,
     //para que se possa deletar uma aresta e formar duas arvores, ou seja, dois clusters.
 
-    std::vector<No>::iterator arv = arvore[0]//Seleciona-se o primeiro Nó da árvore
+    std::vector<No>::iterator arv = arvore.begin();//Seleciona-se o primeiro Nó da árvore
     int i = 0;
     while(arv->getGrau() <= 1)//Verifica se o Nó não é de grau 1.
     {
         i++;
-        arv = arvore[i];//se for muda para o proximo.
+        ++arv;//se for muda para o proximo.
     }
 
-    for(std::vector<No>::iterator noArv = arvore[i+1]; noArv != arvore.end(); ++noArv) //Agora seleciona qual Nó da arvore se liga ao primeiro Nó escolhido.
+    for(std::vector<No>::iterator noArv = ++arv ; noArv != arvore.end(); ++noArv) //Agora seleciona qual Nó da arvore se liga ao primeiro Nó escolhido.
     {
-        for(std::vector<Aresta>::iterator arest = arestasArvore.begin(); arest != arestasArvore.end(); ++arest){
-            if(noArv->getGrau() > 1){
-                if(arest->getIdLista() == arv->getId() && arest->getIdNo == noArv->getId()){
-
+         if(noArv->getGrau() > 1){
+            for(std::vector<Aresta>::iterator arest = arestasArvore.begin(); arest != arestasArvore.end(); ++arest){
+                if(arest->getIdLista() == arv->getId() && arest->getIdNo() == noArv->getId()){
+                        criaCluster(*arv);
+                        criaCluster(*noArv);
+                        auxArestasArvore = arestasArvore;
+                        auxArestasArvore.erase(arest);
 
                 }
             }
         }
     }
-
-
-
-
-
-
-
-
-
 }
+
+void Grafo::criaCluster(No no){
+    Cluster c = Cluster();
+    c.setIdCentroide(no.getId());
+    clusters.push_back(c);
+    c.noCluster.push_back(no);
+}
+

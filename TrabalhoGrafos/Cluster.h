@@ -14,7 +14,8 @@ public:
     vector <float> d_inter;
     float getD_intra(){return d_intra;};
     void setD_intra(float dintra){d_intra = dintra;};
-
+    int getIdCentroide(){return idCentroide;};
+    void setIdCentroide(int id){idCentroide = id;};
 
 
 };
