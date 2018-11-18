@@ -5,10 +5,16 @@ class Cluster{
 
 private:
     int nNos;
+    int idCentroide;
+    float d_intra;
 
 public:
-    float d_intra;
+    vector <No> noCluster;
+    vector <Aresta> arestasCluster;
     vector <float> d_inter;
+    float getD_intra(){return d_intra;};
+    void setD_intra(float dintra){d_intra = dintra;};
+
 
 
 };

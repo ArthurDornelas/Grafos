@@ -32,5 +32,6 @@ class Grafo{
         void sequenciaGraus();
         void imprimiGrafo();
         void algoritmoPrim();
+        void clusterizacaoGuloso();
 };
 #endif // GRAFO_H_INCLUDED
