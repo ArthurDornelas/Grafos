@@ -43,8 +43,8 @@ float No::getAresta(int i){
     return listaAresta[i].getIdNo();
 }
 
-void No::adicionaAresta(int ident, float pesoAresta){
-    Aresta aresta = Aresta(ident,pesoAresta);
+void No::adicionaAresta(int ident, float pesoAresta,int idLista){
+    Aresta aresta = Aresta(ident,pesoAresta,idLista);
     if(ident == id)
        grau += 2;
     else

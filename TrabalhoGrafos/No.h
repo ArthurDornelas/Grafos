@@ -19,7 +19,7 @@ public:
     int getGrau();
     void setId(int id);
     void setGrau(int g);
-    void adicionaAresta(int id,float pesoA);
+    void adicionaAresta(int id,float pesoA,int idLista);
     void removeAresta(int id);
     float getAresta(int index);
     bool eVizinho(int id);

@@ -63,11 +63,11 @@ void Grafo::adicionarArestaNos(int id , int id2,int peso)
 
               if(id != id2)  {
                     if(it->getId() == id){
-                        it->adicionaAresta(id2,peso);
+                        it->adicionaAresta(id2,peso,id);
                     }
 
                     if(it->getId() == id2){
-                        it->adicionaAresta(id,peso);
+                        it->adicionaAresta(id,peso,id2);
                     }
               }
            }
@@ -215,6 +215,7 @@ void Grafo::algoritmoPrim()
     int posListaAdj = 0;
     int cont = 0;
     std::vector <No> arvore;
+    std::vector <Aresta> arestasArvore;
     arvore.push_back(listaAdj[0]);
 
     while(arvore.size() != listaAdj.size()){
@@ -262,6 +263,7 @@ void Grafo::algoritmoPrim()
                if(idNo == it->getId()){
                     posListaAdj = i;
                     arvore.push_back(listaAdj[i]);
+                    arestasArvore.push_back(arvore[posNoArvoreMenor].listaAresta[arestaMenor]);
                     break;
                }
             i++;
@@ -271,6 +273,11 @@ void Grafo::algoritmoPrim()
 
     for (std::vector<No>::iterator no = arvore.begin(); no != arvore.end(); ++no){
            cout << no->getId() << "  ";
+   }
+   cout << endl;
+
+   for (std::vector<Aresta>::iterator aresta = arestasArvore.begin(); aresta != arestasArvore.end(); ++aresta){
+           cout << aresta->getIdLista() << " -> " << aresta->getIdNo() << "  ";
    }
 }
 
