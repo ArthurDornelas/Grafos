@@ -3,14 +3,19 @@
 #include <vector>
 #include "No.h"
 #include "Aresta.h"
+#include "Cluster.h"
 using namespace std;
 
 class Grafo{
     private:
         std::vector <No> listaAdj;
 
+
     public:
 
+        std::vector <No> arvore;
+        std::vector <Aresta> arestasArvore;
+        std::vector <Cluster> clusters;
         void adicionarArestaNos(int id , int id2,int peso);
         void adicionarNo(int id);
         void removerNo(int id);

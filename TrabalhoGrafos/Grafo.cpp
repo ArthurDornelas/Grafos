@@ -2,7 +2,7 @@
 #include "No.h"
 #include "No.cpp"
 #include <vector>
-#define INF 99999;
+#define INF 9999999;
 using namespace std;
 
 void Grafo::adicionarNo(int id)
@@ -214,8 +214,6 @@ void Grafo::algoritmoPrim()
     float sTotAresta = 0;
     int posListaAdj = 0;
     int cont = 0;
-    std::vector <No> arvore;
-    std::vector <Aresta> arestasArvore;
     arvore.push_back(listaAdj[0]);
 
     while(arvore.size() != listaAdj.size()){
