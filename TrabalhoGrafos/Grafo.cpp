@@ -315,6 +315,7 @@ void Grafo::clusterizacaoGuloso()
 
     for(std::vector<No>::iterator noArv = (arv+1) ; noArv != arvore.end(); ++noArv) //Agora seleciona qual Nó da arvore se liga ao primeiro Nó escolhido.
     {
+        bool flag = false;
         cout<<"selecionou o no "<<noArv->getId()<<endl;
         cout<<"entrou vetor noArv"<<endl;
          if(noArv->getGrau() > 1){
@@ -334,12 +335,18 @@ void Grafo::clusterizacaoGuloso()
                                 cout << aresta->getIdLista() << " -> " << aresta->getIdNo() << "  ";
                         }
                         cout<<endl;
+
+                        alocaNosClusters();
+
+
+                        flag = true;
                         break;
                 }
                 arestaAtual++;
             }
         }
-        break;
+       if(flag==true)
+            break;
     }
 
 
@@ -355,5 +362,40 @@ void Grafo::criaCluster(No no){
     c.setIdCentroide(no.getId());
     clusters.push_back(c);
     c.noCluster.push_back(no);
+    c.nNos++;
+    cout << c.noCluster[0].getId() << endl;
 }
 
+void Grafo::alocaNosClusters(){
+    cout<<endl;
+    cout<<"joao boiola"<<endl;
+    int j=-1;
+    for(int i=0; i != clusters.size(); i++){
+            cout<<"entrou no vector de clusters"<<endl;
+            cout<<clusters[i].noCluster[0].getId()<<endl;
+
+        for(std::vector<No>::iterator no = clusters[i].noCluster.begin(); j < clusters[i].noCluster.size()  ; ++no){
+
+            cout<<"entrou no vector de Nos dos clusters"<<endl;
+            //cout << clust->noCluster[j+1].getId() << endl; //Problema: Nao consegue acessar o no
+            for(std::vector<Aresta>::iterator aresta = auxArestasArvore.begin(); aresta != auxArestasArvore.end(); ++aresta){
+                cout<<"entrou no vector de Arestas"<<endl;
+                if(clusters[i].noCluster[j+1].getId() == aresta->getIdLista()){
+                    //clusters[i].noCluster.push_back(*no);
+                    cout<<"entrou"<<endl;
+                }
+            }
+            j++;
+
+        }
+
+    }
+
+    for(std::vector<Cluster>::iterator clus = clusters.begin(); clus != clusters.end(); ++clus){
+            cout<<"imprimi"<<endl;
+       for(std::vector<No>::iterator it = clus->noCluster.begin(); it != clus->noCluster.end(); ++it){
+               cout<<it->getId()<< "  ";
+        }
+        cout<<endl;
+    }
+}

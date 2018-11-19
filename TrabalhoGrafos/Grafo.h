@@ -35,5 +35,6 @@ class Grafo{
         void algoritmoPrim();
         void clusterizacaoGuloso();
         void criaCluster(No no);
+        void alocaNosClusters();
 };
 #endif // GRAFO_H_INCLUDED

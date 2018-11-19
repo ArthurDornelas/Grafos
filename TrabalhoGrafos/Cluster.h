@@ -4,11 +4,12 @@
 class Cluster{
 
 private:
-    int nNos;
+
     int idCentroide;
     float d_intra;
 
 public:
+    int nNos=0;
     vector <No> noCluster;
     vector <Aresta> arestasCluster;
     vector <float> d_inter;
