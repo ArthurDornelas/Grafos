@@ -42,6 +42,12 @@
 		<Unit filename="Aresta.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="Cluster.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="Cluster.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="Grafo.cpp">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>

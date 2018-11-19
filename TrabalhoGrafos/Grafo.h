@@ -33,8 +33,8 @@ class Grafo{
         void sequenciaGraus();
         void imprimiGrafo();
         void algoritmoPrim();
-        void clusterizacaoGuloso();
         void criaCluster(No no);
+        void clusterizacaoGuloso();
         void alocaNosClusters();
 };
 #endif // GRAFO_H_INCLUDED

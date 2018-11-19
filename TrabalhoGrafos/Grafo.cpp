@@ -294,6 +294,14 @@ void Grafo::imprimiGrafo()
     }
 }
 
+void Grafo::criaCluster(No no){
+    cout<<"Entrou criaCluster"<<endl;
+    Cluster c = Cluster();
+    c.setIdCentroide(no.getId());
+    c.noCluster.push_back(no);
+    clusters.push_back(c);
+    c.nNos++;
+}
 
 void Grafo::clusterizacaoGuloso()
 {
@@ -356,46 +364,100 @@ void Grafo::clusterizacaoGuloso()
 
 }
 
-void Grafo::criaCluster(No no){
-    cout<<"Entrou criaCluster"<<endl;
-    Cluster c = Cluster();
-    c.setIdCentroide(no.getId());
-    clusters.push_back(c);
-    c.noCluster.push_back(no);
-    c.nNos++;
-    cout << c.noCluster[0].getId() << endl;
-}
+
 
 void Grafo::alocaNosClusters(){
     cout<<endl;
     cout<<"joao boiola"<<endl;
-    int j=-1;
-    for(int i=0; i != clusters.size(); i++){
+    int j=0,i=0,k=0, l, m;
+    for(std::vector<Cluster>::iterator clust = clusters.begin(); clust != clusters.end(); ++clust){
             cout<<"entrou no vector de clusters"<<endl;
-            cout<<clusters[i].noCluster[0].getId()<<endl;
 
-        for(std::vector<No>::iterator no = clusters[i].noCluster.begin(); j < clusters[i].noCluster.size()  ; ++no){
+            j = 0;
+
+
+        for(std::vector<No>::iterator no = clusters[i].noCluster.begin(); j < clusters[i].noCluster.size(); ++no){
+            cout<<"Esta no No "<<clusters[i].noCluster[j].getId()<<endl;
 
             cout<<"entrou no vector de Nos dos clusters"<<endl;
-            //cout << clust->noCluster[j+1].getId() << endl; //Problema: Nao consegue acessar o no
-            for(std::vector<Aresta>::iterator aresta = auxArestasArvore.begin(); aresta != auxArestasArvore.end(); ++aresta){
+            bool flag = false;
+            l=0;
+            int lAtual=0;
+            //cout<<auxArestasArvore.size()<<endl;
+            k=0;
+            while(k <= auxArestasArvore.size()){
+
                 cout<<"entrou no vector de Arestas"<<endl;
-                if(clusters[i].noCluster[j+1].getId() == aresta->getIdLista()){
-                    //clusters[i].noCluster.push_back(*no);
-                    cout<<"entrou"<<endl;
+                cout<<k<<endl;
+
+                if(clusters[i].noCluster[j].getId() == auxArestasArvore[k].getIdLista() /*|| clusters[i].noCluster[j].getId() == auxArestasArvore[k].getIdNo()*/){
+                         cout<<"entrou If"<<endl;
+                    m=0;
+                    if(l<1){
+                      for(std::vector<No>::iterator it = listaAdj.begin(); it != listaAdj.end(); ++it) {
+                             cout<<"entrou no vector it"<<endl;
+                         if(it->getId() != clusters[i].noCluster[j].getId())   {
+                                cout<<"entrou segundo if"<<endl;
+                            if(it->getId() == auxArestasArvore[k].getIdLista() || it->getId() == auxArestasArvore[k].getIdNo()){
+                                clusters[i].noCluster.push_back(*it);
+                                cout<<"add No "<<clusters[i].noCluster[j+1].getId()<<endl;
+                                cout<<"entrou"<<endl;
+                                flag == true;
+                                k++;
+                                lAtual = m;
+                                l++;
+                                break;
+                            }
+                         }
+                         m++;
+                        }
+                    }
+                    else{
+
+                      for(std::vector<No>::iterator it = listaAdj.begin(); it != listaAdj.end(); ++it) {
+
+                            if(m > lAtual){
+                                cout<<"entrou no vector it"<<endl;
+                                if(it->getId() != clusters[i].noCluster[j].getId())   {
+                                    cout<<"entrou segundo if"<<endl;
+                                    if(it->getId() == auxArestasArvore[k].getIdLista() || it->getId() == auxArestasArvore[k].getIdNo()){
+                                        clusters[i].noCluster.push_back(*it);
+                                        cout<<"add No "<<clusters[i].noCluster[j+2].getId()<<endl;
+                                        cout<<"entrou"<<endl;
+                                        flag == true;
+                                        k++;
+                                        lAtual = m;
+                                        l++;
+                                        break;
+                                    }
+                                }
+                            }
+
+                         m++;
+                       }
+
+                    }
                 }
-            }
+                  //break;
+                //else if(l>0)
+                  //  break;
+
+                k++;
+                }
             j++;
-
-        }
-
+            }
+        i++;
     }
+
+
+
+
 
     for(std::vector<Cluster>::iterator clus = clusters.begin(); clus != clusters.end(); ++clus){
             cout<<"imprimi"<<endl;
-       for(std::vector<No>::iterator it = clus->noCluster.begin(); it != clus->noCluster.end(); ++it){
-               cout<<it->getId()<< "  ";
-        }
-        cout<<endl;
+      for(std::vector<No>::iterator it = clus->noCluster.begin(); it != clus->noCluster.end(); ++it){
+              cout<<it->getId()<< "  ";
+       }
+       cout<<endl;
     }
 }
