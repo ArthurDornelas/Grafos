@@ -9,6 +9,7 @@ class No{
 private:
     int id;
     int grau;
+    float id_intraNo;
 
 public:
     std::vector <Aresta> listaAresta;
@@ -19,6 +20,8 @@ public:
     int getGrau();
     void setId(int id);
     void setGrau(int g);
+    float getIdIntra(){return id_intraNo;};
+    void setIdIntra(float id){id_intraNo = id;};
     void adicionaAresta(int id,float pesoA,int idLista);
     void removeAresta(int id);
     float getAresta(int index);

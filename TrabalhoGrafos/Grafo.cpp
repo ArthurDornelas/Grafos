@@ -343,10 +343,9 @@ void Grafo::clusterizacaoGuloso()
                                 cout << aresta->getIdLista() << " -> " << aresta->getIdNo() << "  ";
                         }
                         cout<<endl;
-
                         alocaNosClusters();
-
-
+                        cout<<endl;
+                        separaArestasClusters();
                         flag = true;
                         break;
                 }
@@ -357,51 +356,35 @@ void Grafo::clusterizacaoGuloso()
             break;
     }
 
-
-
-
-
-
 }
 
 
 
 void Grafo::alocaNosClusters(){
-    cout<<endl;
-    cout<<"joao boiola"<<endl;
+
     int j=0,i=0,k=0, l, m;
     for(std::vector<Cluster>::iterator clust = clusters.begin(); clust != clusters.end(); ++clust){
-            cout<<"entrou no vector de clusters"<<endl;
 
             j = 0;
 
-
         for(std::vector<No>::iterator no = clusters[i].noCluster.begin(); j < clusters[i].noCluster.size(); ++no){
-            cout<<"Esta no No "<<clusters[i].noCluster[j].getId()<<endl;
 
-            cout<<"entrou no vector de Nos dos clusters"<<endl;
             bool flag = false;
             l=0;
             int lAtual=0;
-            //cout<<auxArestasArvore.size()<<endl;
             k=0;
             while(k <= auxArestasArvore.size()){
 
-                cout<<"entrou no vector de Arestas"<<endl;
-                cout<<k<<endl;
-
                 if(clusters[i].noCluster[j].getId() == auxArestasArvore[k].getIdLista() /*|| clusters[i].noCluster[j].getId() == auxArestasArvore[k].getIdNo()*/){
-                         cout<<"entrou If"<<endl;
+
                     m=0;
                     if(l<1){
                       for(std::vector<No>::iterator it = listaAdj.begin(); it != listaAdj.end(); ++it) {
-                             cout<<"entrou no vector it"<<endl;
+
                          if(it->getId() != clusters[i].noCluster[j].getId())   {
-                                cout<<"entrou segundo if"<<endl;
+
                             if(it->getId() == auxArestasArvore[k].getIdLista() || it->getId() == auxArestasArvore[k].getIdNo()){
                                 clusters[i].noCluster.push_back(*it);
-                                cout<<"add No "<<clusters[i].noCluster[j+1].getId()<<endl;
-                                cout<<"entrou"<<endl;
                                 flag == true;
                                 k++;
                                 lAtual = m;
@@ -417,13 +400,9 @@ void Grafo::alocaNosClusters(){
                       for(std::vector<No>::iterator it = listaAdj.begin(); it != listaAdj.end(); ++it) {
 
                             if(m > lAtual){
-                                cout<<"entrou no vector it"<<endl;
                                 if(it->getId() != clusters[i].noCluster[j].getId())   {
-                                    cout<<"entrou segundo if"<<endl;
                                     if(it->getId() == auxArestasArvore[k].getIdLista() || it->getId() == auxArestasArvore[k].getIdNo()){
                                         clusters[i].noCluster.push_back(*it);
-                                        cout<<"add No "<<clusters[i].noCluster[j+2].getId()<<endl;
-                                        cout<<"entrou"<<endl;
                                         flag == true;
                                         k++;
                                         lAtual = m;
@@ -438,9 +417,6 @@ void Grafo::alocaNosClusters(){
 
                     }
                 }
-                  //break;
-                //else if(l>0)
-                  //  break;
 
                 k++;
                 }
@@ -450,9 +426,6 @@ void Grafo::alocaNosClusters(){
     }
 
 
-
-
-
     for(std::vector<Cluster>::iterator clus = clusters.begin(); clus != clusters.end(); ++clus){
             cout<<"imprimi"<<endl;
       for(std::vector<No>::iterator it = clus->noCluster.begin(); it != clus->noCluster.end(); ++it){
@@ -460,4 +433,52 @@ void Grafo::alocaNosClusters(){
        }
        cout<<endl;
     }
+}
+
+void Grafo::moveCentroide()
+{
+
+
+
+
+
+
+
+
+}
+
+void Grafo::separaArestasClusters()
+{
+    int i=0, j=0, k=0;
+
+    for(std::vector<Cluster>::iterator clust = clusters.begin(); clust != clusters.end(); ++clust)
+    {
+       j=0;
+        for(std::vector<Aresta>::iterator aresta = auxArestasArvore.begin(); aresta != auxArestasArvore.end(); ++aresta)
+        {
+            j=0;
+            for(std::vector<No>::iterator no = clusters[i].noCluster.begin(); j < clusters[i].noCluster.size(); ++no)
+            {
+
+                if(aresta->getIdNo() == clusters[i].noCluster[j].getId() || aresta->getIdLista() == clusters[i].noCluster[j].getId()){
+                    clusters[i].arestasCluster.push_back(*aresta);
+                    break;
+                }
+                j++;
+            }
+
+        }
+      i++;
+    }
+
+
+
+    i=0;
+  for(std::vector<Cluster>::iterator clust = clusters.begin(); clust != clusters.end(); ++clust){
+     for (std::vector<Aresta>::iterator aresta = clusters[i].arestasCluster.begin(); aresta != clusters[i].arestasCluster.end(); ++aresta){
+           cout << aresta->getIdLista() << " -> " << aresta->getIdNo() << "  ";
+    }
+    cout<<endl;
+   i++;
+  }
 }

@@ -36,5 +36,7 @@ class Grafo{
         void criaCluster(No no);
         void clusterizacaoGuloso();
         void alocaNosClusters();
+        void moveCentroide();
+        void separaArestasClusters();
 };
 #endif // GRAFO_H_INCLUDED
