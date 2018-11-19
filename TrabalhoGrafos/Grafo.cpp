@@ -4,6 +4,7 @@
 #include <vector>
 #define INF 9999999;
 using namespace std;
+#include "Cluster.h"
 
 void Grafo::adicionarNo(int id)
 {
@@ -303,29 +304,53 @@ void Grafo::clusterizacaoGuloso()
 
     std::vector<No>::iterator arv = arvore.begin();//Seleciona-se o primeiro Nó da árvore
     int i = 0;
+    cout<<"Selecionando 1 no arvore"<<endl;
     while(arv->getGrau() <= 1)//Verifica se o Nó não é de grau 1.
     {
+        cout<<"Entrou while"<<endl;
         i++;
         ++arv;//se for muda para o proximo.
     }
 
-    for(std::vector<No>::iterator noArv = ++arv ; noArv != arvore.end(); ++noArv) //Agora seleciona qual Nó da arvore se liga ao primeiro Nó escolhido.
+
+    for(std::vector<No>::iterator noArv = (arv+1) ; noArv != arvore.end(); ++noArv) //Agora seleciona qual Nó da arvore se liga ao primeiro Nó escolhido.
     {
+        cout<<"selecionou o no "<<noArv->getId()<<endl;
+        cout<<"entrou vetor noArv"<<endl;
          if(noArv->getGrau() > 1){
+             cout<<"Grau maior que 1"<<endl;
+            int arestaAtual = 0;
             for(std::vector<Aresta>::iterator arest = arestasArvore.begin(); arest != arestasArvore.end(); ++arest){
+                cout<<"Entrou for aresta"<<endl;
+                cout<<"Grau No arv "<<arv->getId()<<endl;
                 if(arest->getIdLista() == arv->getId() && arest->getIdNo() == noArv->getId()){
+                        cout<<"entrou if tirar aresta"<<endl;
                         criaCluster(*arv);
                         criaCluster(*noArv);
+                        cout<<"copia auxAresta"<<endl;
                         auxArestasArvore = arestasArvore;
-                        auxArestasArvore.erase(arest);
-
+                        auxArestasArvore.erase(auxArestasArvore.begin() + arestaAtual);
+                        for (std::vector<Aresta>::iterator aresta = auxArestasArvore.begin(); aresta != auxArestasArvore.end(); ++aresta){
+                                cout << aresta->getIdLista() << " -> " << aresta->getIdNo() << "  ";
+                        }
+                        cout<<endl;
+                        break;
                 }
+                arestaAtual++;
             }
         }
+        break;
     }
+
+
+
+
+
+
 }
 
 void Grafo::criaCluster(No no){
+    cout<<"Entrou criaCluster"<<endl;
     Cluster c = Cluster();
     c.setIdCentroide(no.getId());
     clusters.push_back(c);

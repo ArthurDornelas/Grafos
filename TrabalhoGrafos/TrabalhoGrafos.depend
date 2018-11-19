@@ -119,7 +119,7 @@
 	"Aresta.h"
 	"iostream"
 
-1542493417 source:c:\users\adriana\downloads\grafos-master (7)\grafos-master\trabalhografos\main.cpp
+1542589122 source:c:\users\adriana\downloads\grafos-master (7)\grafos-master\trabalhografos\main.cpp
 	<iostream>
 	"Grafo.h"
 	"Grafo.cpp"
@@ -138,11 +138,12 @@
 1542505316 c:\users\adriana\downloads\grafos-master (7)\grafos-master\trabalhografos\aresta.h
 	"No.h"
 
-1542588818 c:\users\adriana\downloads\grafos-master (7)\grafos-master\trabalhografos\grafo.cpp
+1542590493 c:\users\adriana\downloads\grafos-master (7)\grafos-master\trabalhografos\grafo.cpp
 	"Grafo.h"
 	"No.h"
 	"No.cpp"
 	<vector>
+	"Cluster.h"
 
 1542571425 c:\users\adriana\downloads\grafos-master (7)\grafos-master\trabalhografos\no.cpp
 	"Aresta.h"

@@ -43,8 +43,8 @@ int main() {
     grafo->imprimiGrafo();
     cout<<endl;
 
-    grafo->algoritmoPrim();
-
+    //grafo->algoritmoPrim();
+    grafo->clusterizacaoGuloso();
     //if(grafo->vizinho(1,2) == true)
       //  cout << "Thats It";
     //else
