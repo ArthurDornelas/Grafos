@@ -356,7 +356,7 @@ void Grafo::algoritmoKruskal()
     //
     int* subcnjt = new int [listaAdj.size()];
 
-    std::memset(subcnjt, -1, tamanhoArestas);
+    std::memset(subcnjt, -1, listaAdj.size());
 
 
     for(int i = 0; i < tamanhoArestas; i++)
@@ -383,8 +383,9 @@ void Grafo::algoritmoKruskal()
         char vert2 = 'A' + arvoreZ[i].getIdLista();
     }
 }
-*/
 
+
+*/
 
 void Grafo::imprimiGrafo()
 {
