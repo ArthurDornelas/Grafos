@@ -39,9 +39,7 @@ public:
     void alocaNosClusters();
     void moveCentroide();
     void separaArestasClusters();
-    int buscar(int subConjunto[], int i);
-    void unir(int subConjunto[], int vert1, int vert2);
-    void algoritmoKruskal();
+
 
 };
 #endif // GRAFO_H_INCLUDED

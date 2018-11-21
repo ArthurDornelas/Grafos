@@ -11,7 +11,7 @@
 	"No.h"
 	"Aresta.h"
 
-1542315072 
+1542661083 
 
 1542051389 c:\users\adriana\downloads\grafos-master (2)\grafos-master\trabalhografos\no.h
 	<vector>
@@ -25,8 +25,6 @@
 	"No.h"
 	"No.cpp"
 	<vector>
-
-1542661083 
 
 1542129620 c:\users\adriana\downloads\grafos-master (2)\grafos-master\trabalhografos\no.cpp
 	"Aresta.h"
@@ -178,7 +176,7 @@
 	"Grafo.cpp"
 	"Menu.h"
 
-1542819106 /home/econs/Downloads/Grafos-master/TrabalhoGrafos/Grafo.h
+1542829556 /home/econs/Downloads/Grafos-master/TrabalhoGrafos/Grafo.h
 	<vector>
 	"No.h"
 	"Aresta.h"
@@ -196,7 +194,7 @@
 	"Aresta.h"
 	"Grafo.h"
 
-1542821360 /home/econs/Downloads/Grafos-master/TrabalhoGrafos/Grafo.cpp
+1542829556 /home/econs/Downloads/Grafos-master/TrabalhoGrafos/Grafo.cpp
 	"Grafo.h"
 	"No.h"
 	"No.cpp"

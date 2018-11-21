@@ -324,68 +324,6 @@ void Grafo::algoritmoPrim()
     }
     cout<<endl;
 }
-/*
-// função que busca o subconjunto de um elemento i
-int Grafo::buscar(int subConjunto[], int i)
-{
-    if(subConjunto[i] == -1)
-        return i;
-    return buscar(subConjunto, subConjunto[i]);
-}
-
-
-// função para unir dois subconjuntos em um único subconjunto
-void Grafo::unir(int subConjunto[], int vert1, int vert2)
-{
-    int v1_set = buscar(subConjunto, vert1);
-    int v2_set = buscar(subConjunto, vert2);
-    subConjunto[v1_set] = v2_set;
-}
-
-
-
-void Grafo::algoritmoKruskal()
-{
-
-    vector<Aresta> arvoreZ;
-    int tamanhoArestas = arestasArvore.size();
-
-    //ordena as arestas do menor peso pro maior
-    std::sort(arestasArvore.begin(), arestasArvore.end());
-
-    //
-    int* subcnjt = new int [listaAdj.size()];
-
-    std::memset(subcnjt, -1, listaAdj.size());
-
-
-    for(int i = 0; i < tamanhoArestas; i++)
-    {
-        int vert1 = buscar(subcnjt, arestasArvore[i].getIdNo());
-        int vert2 = buscar(subcnjt, arestasArvore[i].getIdLista());
-
-        if (vert1 != vert2) {
-
-            //se forem diferentes, não forma ciclo
-            arvoreZ.push_back(arestasArvore[i]);
-            unir(subcnjt, vert1, vert2);
-
-
-        }
-
-    }
-
-    int tamanhoArvore = arvoreZ.size();
-
-    for (int i = 0; i < tamanhoArvore; i++){
-
-        char vert1 = 'A' + arvoreZ[i].getIdNo();
-        char vert2 = 'A' + arvoreZ[i].getIdLista();
-    }
-}
-
-
-*/
 
 void Grafo::imprimiGrafo()
 {
