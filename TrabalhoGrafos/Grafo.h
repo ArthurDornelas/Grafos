@@ -4,6 +4,8 @@
 #include "No.h"
 #include "Aresta.h"
 #include "Cluster.h"
+#include <iostream>
+#include <fstream>
 using namespace std;
 
 class Grafo
@@ -39,6 +41,8 @@ public:
     void alocaNosClusters();
     void moveCentroide();
     void separaArestasClusters();
+    void lerGrafo(string caminho);
+    void lerDigrafo(string caminho);
 
 
 };

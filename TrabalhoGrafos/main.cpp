@@ -5,6 +5,15 @@
 using namespace std;
 
 int main() {
+    /*
+    Pra ler Um dígrafo é só chamar essa funćão, com o nome do arquivo como parâmetro
+        Grafo* grafo = new Grafo();
+        grafo->lerDigrafo("teste.txt");
+        grafo->removerNo(1);
+        grafo->imprimiGrafo();
+    */
+
+
 
     cout<< "teste" << endl;
     Grafo* grafo = new Grafo();
@@ -17,7 +26,6 @@ int main() {
     grafo->adicionarNo(7);
     grafo->imprimiGrafo();
     cout<< endl;
-
 
 
     //if(grafo->estaNoGrafo(1) == true)
@@ -90,6 +98,5 @@ int main() {
     menu->inicia();
 
     */
-
     return 0;
 }

@@ -255,9 +255,9 @@ void Grafo::algoritmoPrim()
         int menor = INF;
         int idNo = -1;
         int arestaMenor = -1;
-        int posNoArvoreMenor = -1; //posicao que est· o nÛ que contem a menor aresta
+        int posNoArvoreMenor = -1; //posicao que est√° o n√≥ que contem a menor aresta
 
-        //for que roda os nÛs que j· est„o na ·rvore
+        //for que roda os n√≥s que j√° est√£o na √°rvore
         int posArvore = 0; // posicao atual da arvore
         for(std::vector<No>::iterator arv = arvore.begin(); arv != arvore.end(); ++arv)
         {
@@ -266,7 +266,7 @@ void Grafo::algoritmoPrim()
             int contAresta = 0; //posicao atual da aresta
             for(std::vector<Aresta>::iterator arest = arvore[posArvore].listaAresta.begin(); arest != arvore[posArvore].listaAresta.end(); ++arest)
             {
-                // Verifica se È um ciclo ou n„o
+                // Verifica se √© um ciclo ou n√£o
                 bool ciclo = false;
                 if(arvore.size() > 0)
                 {
@@ -353,13 +353,13 @@ void Grafo::clusterizacaoGuloso()
 {
     algoritmoPrim(); //roda algoritmo de Prim para se ter a arvore geradora minima.
 
-    //Inicializa dois nÛs como os primeiros centroides, fazendo k=2 (esses dois nÛs tem que se ligar no agoritmo de Prim,
+    //Inicializa dois n√≥s como os primeiros centroides, fazendo k=2 (esses dois n√≥s tem que se ligar no agoritmo de Prim,
     //para que se possa deletar uma aresta e formar duas arvores, ou seja, dois clusters.
 
-    std::vector<No>::iterator arv = arvore.begin();//Seleciona-se o primeiro NÛ da ·rvore
+    std::vector<No>::iterator arv = arvore.begin();//Seleciona-se o primeiro N√≥ da √°rvore
     int i = 0;
     cout<<"Selecionando 1 no arvore"<<endl;
-    while(arv->getGrau() <= 1)//Verifica se o NÛ n„o È de grau 1.
+    while(arv->getGrau() <= 1)//Verifica se o N√≥ n√£o √© de grau 1.
     {
         cout<<"Entrou while"<<endl;
         i++;
@@ -367,7 +367,7 @@ void Grafo::clusterizacaoGuloso()
     }
 
 
-    for(std::vector<No>::iterator noArv = (arv+1) ; noArv != arvore.end(); ++noArv) //Agora seleciona qual NÛ da arvore se liga ao primeiro NÛ escolhido.
+    for(std::vector<No>::iterator noArv = (arv+1) ; noArv != arvore.end(); ++noArv) //Agora seleciona qual N√≥ da arvore se liga ao primeiro N√≥ escolhido.
     {
         bool flag = false;
         cout<<"selecionou o no "<<noArv->getId()<<endl;
@@ -549,5 +549,30 @@ void Grafo::separaArestasClusters()
         }
         cout<<endl;
         i++;
+    }
+}
+
+void Grafo::lerDigrafo(string caminho)
+{
+    ifstream arquivo;
+    int id_no_1, id_no_2;
+    float peso_aresta;
+    arquivo.open(caminho);
+    if (arquivo.is_open())
+    {
+        while(arquivo >> id_no_1 >> id_no_2 >> peso_aresta)
+        {
+
+            if( !this->estaNoGrafo(id_no_1) )
+            {
+                this->adicionarNo(id_no_1);
+            }
+            if( !this->estaNoGrafo(id_no_2) )
+            {
+                this->adicionarNo(id_no_2);
+            }
+            this->adicionarArestaNos(id_no_1, id_no_2, peso_aresta);
+
+        }
     }
 }
