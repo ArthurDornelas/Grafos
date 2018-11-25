@@ -244,8 +244,6 @@ void Grafo::sequenciaGraus()
 
 void Grafo::algoritmoPrim()
 {
-    float sTotalAresta[listaAdj.size()-1]; //Numero de arestas tem que ser n-1.
-    float sTotAresta = 0;
     int posListaAdj = 0;
     int cont = 0;
     arvore.push_back(listaAdj[0]);
@@ -500,6 +498,8 @@ void Grafo::alocaNosClusters()
         }
         cout<<endl;
     }
+
+    calculaDInter(4);
 }
 
 void Grafo::moveCentroide(int indexClust)
@@ -567,6 +567,154 @@ void Grafo::separaArestasClusters()
     moveCentroide(0);
 
 }
+
+void Grafo::calculaDInter(int idNo){
+
+    int k=0; // posicao do idNo no vetor Arvore
+    for(int i=0;i<arvore.size();i++){
+        if(arvore[i].getId()==idNo){
+            k=i;
+         break;
+        }
+    }
+    int a = -1;
+    int id_lista = -1;
+    bool flag = false;
+    float soma = 0;
+    int idCentroide= -1;
+    int i = 0; // posicao no vetor clusters
+    for(std::vector<Cluster>::iterator clust = clusters.begin(); clust != clusters.end(); ++clust){
+        idCentroide = clust->getIdCentroide();
+        soma=0;
+
+        ///////////////////////////////////////// Verifica posicao do Centroide na Arvore
+        int c=0; // posicao do centroide no vetor Arvore
+        for(int i=0;i<arvore.size();i++){
+            if(arvore[i].getId()==idCentroide){
+                c=i;
+            break;
+            }
+        }
+        //////////////////////////////////////////
+
+        ///////////////////////////////////////// Roda as arestas da Arvore
+
+        if(k < c){ // Verifica se a posicao do No esta antes ou depois do Centroide no vector Arvore
+
+                a = 0; //posicao atual da aresta no vector
+                for (std::vector<Aresta>::iterator aresta = arestasArvore.begin(); aresta != arestasArvore.end(); ++aresta){
+                    //cout << "Entra vetor 1 Aresta" << endl;
+                    if(aresta->getIdNo() == idCentroide){
+                        id_lista = idCentroide;
+                        //cout << "aresta get idNo" << aresta->getIdNo() <<endl;
+
+                        for (std::vector<Aresta>::iterator arest = aresta; arest->getIdNo() != idNo || a >=0 ; --arest){
+                            //cout << "aresta 2 get idNo" << arest->getIdNo() <<endl;
+                            //cout << "id lista " << id_lista <<endl;
+                            if(arest->getIdLista() != idNo && arest->getIdNo() == id_lista){
+                                // cout << "entra no If" <<endl;
+                                soma += arest->getPesoAresta();
+                                id_lista = arest->getIdLista();
+                            }
+
+                            else if(arest->getIdLista() == idNo && arest->getIdNo() == id_lista){
+                            //  cout << "entra no Else If" <<endl;
+                                soma += arest->getPesoAresta();
+                            //  cout << "Soma: " << soma <<endl;
+                                flag = true;
+                                break;
+                            }
+                            else if(arest->getIdLista() != idNo && arest->getIdNo() == idNo){
+                            //  cout << "entra no Else If 2" <<endl;
+                                soma += arest->getPesoAresta();
+                            //  cout << "Soma: " << soma <<endl;
+                                flag = true;
+                                break;
+                            }
+                        // cout << "Soma: " << soma <<endl;
+                            a--;
+                        }
+                    }
+                    if(flag == true)
+                        break;
+                    a++;
+                }
+
+        }
+
+        else if(k == c) {
+                cout << "entrou no else if"<<endl;
+                soma = 0;
+        }
+
+        else {
+
+            a = 0;
+            for (std::vector<Aresta>::iterator aresta = arestasArvore.begin(); aresta != arestasArvore.end(); ++aresta){
+                // cout << "Entra vetor 1 Aresta" << endl;
+                if(aresta->getIdNo() == idNo){
+                    id_lista = aresta->getIdNo();
+                   // cout << "aresta get idNo" << aresta->getIdNo() <<endl;
+
+                    for (std::vector<Aresta>::iterator arest = aresta; arest->getIdNo() != idCentroide || a >=0 ; --arest){
+                       // cout << "aresta 2 get idNo " << arest->getIdNo() <<endl;
+                       // cout << "aresta 2 get idLista " << arest->getIdLista() <<endl;
+                       // cout << "id lista " << id_lista <<endl;
+                        if(arest->getIdLista() != idCentroide && arest->getIdNo() == id_lista && idCentroide != arest->getIdNo()){
+                          //  cout << "entra no If" <<endl;
+                            soma += arest->getPesoAresta();
+                            id_lista = arest->getIdLista();
+                        }
+                        //else if(arest->getIdLista() != noCluster[j].getId() && arest->getIdNo() == id_lista){
+                          //  cout << "entra no Else If 1" <<endl;
+                          //  soma += arest->getPesoAresta();
+                          //  id_lista = arest->getIdLista();
+                        //}
+
+                         else if(arest->getIdLista() != idCentroide && arest->getIdLista() == id_lista && idCentroide == arest->getIdNo()){
+                          //  cout << "entra no Else If 2" <<endl;
+                            soma += arest->getPesoAresta();
+                          //  cout << "Soma: " << soma <<endl;
+                            flag = true;
+                            break;
+                        }
+
+                        else if(arest->getIdLista() == idCentroide && arest->getIdLista() == id_lista){
+                          //  cout << "entra no Else If 3" <<endl;
+                            soma += arest->getPesoAresta();
+                         //   cout << "Soma: " << soma <<endl;
+                            flag = true;
+                            break;
+                        }
+
+                        else if(arest->getIdLista() == idCentroide && arest->getIdNo() == id_lista){
+                          //  cout << "entra no Else If 4" <<endl;
+                            soma += arest->getPesoAresta();
+                         //   cout << "Soma: " << soma <<endl;
+                            flag = true;
+                            break;
+                        }
+                       // cout << "Soma: " << soma <<endl;
+                        a--;
+                    }
+                }
+                a++;
+            }
+
+        }
+        //////////////////////////////////////////////////////////////////
+        cout<<soma<<endl;
+       arvore[i].dInter.push_back(soma);
+    }
+
+    for(int j = 0; j<arvore[i].dInter.size() ; j++){
+            cout << "Cluster 1 -- dInter = " << arvore[i].dInter[j]<<endl;
+
+    }
+
+}
+
+
 
 /*void Grafo::lerDigrafo(string caminho)
 {

@@ -4,16 +4,14 @@
 	"Grafo.h"
 	"Grafo.cpp"
 
-1542909017 "
+1542811614 "
 
 1542131009 c:\users\adriana\downloads\grafos-master (2)\grafos-master\trabalhografos\grafo.h
 	<vector>
 	"No.h"
 	"Aresta.h"
 
-1543166433 
-
-1543165691 
+1542811614 
 
 1542051389 c:\users\adriana\downloads\grafos-master (2)\grafos-master\trabalhografos\no.h
 	<vector>
@@ -327,7 +325,7 @@
 	"Grafo.cpp"
 	"Menu.h"
 
-1543165691 c:\users\adriana\downloads\grafos-master (10)\grafos-master\trabalhografos\grafo.h
+1543168181 c:\users\adriana\downloads\grafos-master (10)\grafos-master\trabalhografos\grafo.h
 	<vector>
 	"No.h"
 	"Aresta.h"
@@ -335,19 +333,19 @@
 	<iostream>
 	<fstream>
 
-1542895622 c:\users\adriana\downloads\grafos-master (10)\grafos-master\trabalhografos\no.h
+1543167312 c:\users\adriana\downloads\grafos-master (10)\grafos-master\trabalhografos\no.h
 	<vector>
 	"Aresta.h"
 
 1542895622 c:\users\adriana\downloads\grafos-master (10)\grafos-master\trabalhografos\aresta.h
 	"No.h"
 
-1543165691 c:\users\adriana\downloads\grafos-master (10)\grafos-master\trabalhografos\cluster.h
+1543167312 c:\users\adriana\downloads\grafos-master (10)\grafos-master\trabalhografos\cluster.h
 	"No.h"
 	"Aresta.h"
 	"Grafo.h"
 
-1543166366 c:\users\adriana\downloads\grafos-master (10)\grafos-master\trabalhografos\grafo.cpp
+1543171589 c:\users\adriana\downloads\grafos-master (10)\grafos-master\trabalhografos\grafo.cpp
 	"Grafo.h"
 	"No.h"
 	"No.cpp"
@@ -356,8 +354,6 @@
 	<cstring>
 	"Cluster.h"
 	"Cluster.cpp"
-
-1543166366 pp"
 
 1542895622 c:\users\adriana\downloads\grafos-master (10)\grafos-master\trabalhografos\no.cpp
 	"Aresta.h"
@@ -379,61 +375,4 @@
 	"Cluster.h"
 	<vector>
 	"Aresta.h"
-
-1543166699 source:/home/sasaoka/projetos/grafos/Grafos/TrabalhoGrafos/main.cpp
-	<iostream>
-	"Grafo.h"
-	"Grafo.cpp"
-	"Menu.h"
-
-1543166699 /home/sasaoka/projetos/grafos/Grafos/TrabalhoGrafos/Grafo.h
-	<vector>
-	"No.h"
-	"Aresta.h"
-	"Cluster.h"
-	<iostream>
-	<fstream>
-
-1542909017 /home/sasaoka/projetos/grafos/Grafos/TrabalhoGrafos/No.h
-	<vector>
-	"Aresta.h"
-
-1542554956 /home/sasaoka/projetos/grafos/Grafos/TrabalhoGrafos/Aresta.h
-	"No.h"
-
-1543166699 /home/sasaoka/projetos/grafos/Grafos/TrabalhoGrafos/Cluster.h
-	"No.h"
-	"Aresta.h"
-	"Grafo.h"
-
-1543166699 /home/sasaoka/projetos/grafos/Grafos/TrabalhoGrafos/Grafo.cpp
-	"Grafo.h"
-	"No.h"
-	"No.cpp"
-	<vector>
-	<algorithm>
-	<cstring>
-	"Cluster.h"
-	"Cluster.cpp"
-
-1542909017 /home/sasaoka/projetos/grafos/Grafos/TrabalhoGrafos/No.cpp
-	"Aresta.h"
-	"No.h"
-
-1543166699 /home/sasaoka/projetos/grafos/Grafos/TrabalhoGrafos/Cluster.cpp
-	"Cluster.h"
-	<vector>
-	"Aresta.h"
-
-1542554956 /home/sasaoka/projetos/grafos/Grafos/TrabalhoGrafos/Menu.h
-	"Grafo.h"
-	"No.h"
-	"Aresta.h"
-
-1542554956 source:/home/sasaoka/projetos/grafos/Grafos/TrabalhoGrafos/Menu.cpp
-	"Menu.h"
-	"Grafo.h"
-	"No.h"
-	"Aresta.h"
-	"iostream"
 
