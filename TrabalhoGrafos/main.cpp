@@ -37,6 +37,7 @@ int main() {
     grafo->adicionarArestaNos(1,2,7);
     grafo->adicionarArestaNos(1,4,5);
     grafo->adicionarArestaNos(2,4,9);
+    grafo->adicionarArestaNos(2,3,8);
      grafo->adicionarArestaNos(2,5,7);
       grafo->adicionarArestaNos(3,5,5);
        grafo->adicionarArestaNos(4,5,15);

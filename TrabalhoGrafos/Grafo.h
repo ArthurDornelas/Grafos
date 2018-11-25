@@ -39,7 +39,7 @@ public:
     void criaCluster(No no);
     void clusterizacaoGuloso();
     void alocaNosClusters();
-    void moveCentroide();
+    void moveCentroide(int indexClust);
     void separaArestasClusters();
     void lerGrafo(string caminho);
     void lerDigrafo(string caminho);

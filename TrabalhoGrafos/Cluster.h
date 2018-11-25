@@ -20,7 +20,7 @@ public:
     void setD_intra(float dintra){d_intra = dintra;};
     int getIdCentroide(){return idCentroide;};
     void setIdCentroide(int id){idCentroide = id;};
-    int calculaDintra();
+    float calculaDintra(int id);
 
 };
 

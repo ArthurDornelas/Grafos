@@ -7,6 +7,7 @@
 #define INF 9999999;
 using namespace std;
 #include "Cluster.h"
+#include "Cluster.cpp"
 
 void Grafo::adicionarNo(int id)
 {
@@ -501,15 +502,27 @@ void Grafo::alocaNosClusters()
     }
 }
 
-void Grafo::moveCentroide()
+void Grafo::moveCentroide(int indexClust)
 {
+    int centroideId = clusters[indexClust].getIdCentroide();
+    float menorSoma = -1;
+    int dIntra = -1;
+     //cout<<"Antigo Centroide " << centroideId << endl;
 
+    for(int i=0 ; i < clusters[indexClust].noCluster.size() ; i++){
+        if(clusters[indexClust].noCluster[i].getId() == centroideId)
+            menorSoma =  clusters[indexClust].calculaDintra(clusters[indexClust].noCluster[i].getId());
+    }
 
+    for(int i=0 ; i < clusters[indexClust].noCluster.size() ; i++){
+       dIntra = clusters[indexClust].calculaDintra(clusters[indexClust].noCluster[i].getId());
+       if(dIntra < menorSoma){
+          menorSoma = dIntra;
+          centroideId = clusters[indexClust].noCluster[i].getId();
+       }
+    }
 
-
-
-
-
+    //cout<<"Novo Centroide " << centroideId << endl;
 
 }
 
@@ -550,9 +563,12 @@ void Grafo::separaArestasClusters()
         cout<<endl;
         i++;
     }
+
+    moveCentroide(0);
+
 }
 
-void Grafo::lerDigrafo(string caminho)
+/*void Grafo::lerDigrafo(string caminho)
 {
     ifstream arquivo;
     int id_no_1, id_no_2;
@@ -576,3 +592,4 @@ void Grafo::lerDigrafo(string caminho)
         }
     }
 }
+*/
