@@ -42,6 +42,7 @@ public:
     void moveCentroide(int indexClust);
     void separaArestasClusters();
     void calculaDInter(int idNo);
+    void moveCluster(int idNo);
     void lerGrafo(string caminho);
     void lerDigrafo(string caminho);
 

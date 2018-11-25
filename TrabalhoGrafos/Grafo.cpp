@@ -242,6 +242,20 @@ void Grafo::sequenciaGraus()
 }
 
 
+/*
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+X                                                                                                                                                               X
+X  No algoritmo de Prim comeca do primeiro No inserido e busca o proximo No com menor peso de aresta que esse liga                                              X
+X  e adiciona esse No a um vetor chamado arvore.Em seguida o algoritmo de prim  busca o proximo No a ser inserido com menor pseso                               X
+X  de aresta entre os nos ja presentes no vetor, por exemplo, se temos dois Nos inseridos no vetor arvore buscaremos a aresta de menor peso                     X
+X  em um conjunto que engloba a aresta desses dois nos ,  colocaremos esse No aqual essa aresta liga ao nosso vetor                                             X
+X  e o processo repete.Verificamos antes de inserir o novo No se ele vai formar um ciclo com dois Nos ja presentes no vetor arvore atraves da variavel "ciclo". X
+X  O processo que verifica qual a menor aresta consiste em rodar um For e  comparar com uma variavel declarada na variavel chamada Menor,                       X
+X  caso o peso da aresta seja menor que a variavel "menor" esse valor E substituido pelo peso da aresta,                                                        X
+X  e assim tambem guardamoas a aresta em um vetor chamado "arestasArvore" e o No no vetor arvore  que ela liga. acresentando entao o No ao vetor.               X
+X                                                                                                                                                               X
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+ */
 void Grafo::algoritmoPrim()
 {
     int posListaAdj = 0;
@@ -393,8 +407,6 @@ void Grafo::clusterizacaoGuloso()
                     }
                     cout<<endl;
                     alocaNosClusters();
-                    cout<<endl;
-                    separaArestasClusters();
                     flag = true;
                     break;
                 }
@@ -499,7 +511,10 @@ void Grafo::alocaNosClusters()
         cout<<endl;
     }
 
-    calculaDInter(4);
+    separaArestasClusters();
+    cout<< endl;
+
+    calculaDInter(2);
 }
 
 void Grafo::moveCentroide(int indexClust)
@@ -703,17 +718,73 @@ void Grafo::calculaDInter(int idNo){
 
         }
         //////////////////////////////////////////////////////////////////
-        cout<<soma<<endl;
-       arvore[i].dInter.push_back(soma);
+       arvore[k].dInter.push_back(soma);
     }
 
-    for(int j = 0; j<arvore[i].dInter.size() ; j++){
-            cout << "Cluster 1 -- dInter = " << arvore[i].dInter[j]<<endl;
+    for(int j = 0; j<arvore[k].dInter.size() ; j++){
+            cout << "Cluster "<<j<<" -- dInter = " << arvore[k].dInter[j]<<endl;
 
     }
 
 }
 
+void Grafo::moveCluster(int idNo)
+{
+    int indexIdNo = -1;
+    bool flag = false;
+    float menor_dInter = -1;
+
+    int k=0; // posicao do idNo no vetor Arvore
+    for(int i=0;i<arvore.size();i++){
+        if(arvore[i].getId()==idNo){
+            k=i;
+         break;
+        }
+    }
+
+    int i = 0; //posicao cluster
+    for(std::vector<Cluster>::iterator clust = clusters.begin(); clust != clusters.end(); ++clust)
+    {
+        for(int j=0; j < clusters[i].noCluster.size() ; j++){
+            if(clusters[i].noCluster[j].getId() == idNo){
+                    flag = true;
+                    indexIdNo = j;
+                    break;
+            }
+        }
+
+        if(flag == true)
+                break;
+
+       i++;
+    }
+
+    calculaDInter(idNo);
+
+    bool mudaCluster = false;
+    int salvaV = i;
+    menor_dInter = arvore[k].dInter[i];
+    for(int v=0 ; v<arvore[k].dInter.size() ; v++){
+        if(v != i){
+                if(arvore[k].dInter[v] < menor_dInter){
+                    menor_dInter = arvore[k].dInter[v];
+                    mudaCluster = true;
+                    salvaV = v;
+                }
+        }
+    }
+
+    if(mudaCluster == true)
+    {
+        clusters[salvaV].noCluster.push_back(arvore[k]);
+        clusters[i].noCluster.erase(clusters[i].noCluster.begin() + indexIdNo);
+
+        alocaNosClusters();
+
+    }
+
+
+}
 
 
 /*void Grafo::lerDigrafo(string caminho)
