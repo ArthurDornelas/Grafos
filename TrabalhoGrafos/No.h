@@ -14,6 +14,7 @@ private:
 
 public:
     std::vector <Aresta> listaAresta;
+    std::vector <float> dInter;
     No();
     No(int id, int grau);
     ~No();

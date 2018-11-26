@@ -3,6 +3,7 @@
 #include "No.h"
 #include "Aresta.h"
 #include "Grafo.h"
+using namespace std;
 
 class Cluster{
 
