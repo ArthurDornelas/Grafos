@@ -830,8 +830,7 @@ bool Grafo::ehBipartido()
     for(std::vector<No>::iterator it = listaAdj.begin(); it != listaAdj.end(); ++it)
     {
         char label = it->getLabel();
-        int j = 0;
-        for(std::vector <Aresta>::iterator arest = it->listaAresta.begin(); arest != it->listaAresta.end(); arest++, j++)
+        for(std::vector <Aresta>::iterator arest = it->listaAresta.begin(); arest != it->listaAresta.end(); arest++)
         {
             int id = arest->getIdNo();
             char label_2 = bucar_label_do_no(id);
@@ -843,4 +842,29 @@ bool Grafo::ehBipartido()
     }
 
     return true;
+}
+
+void Grafo::preencher_grafo_bipartido()
+{
+    bool paridade = true;
+    for(std::vector<No>::iterator it = listaAdj.begin();it != listaAdj.end() ; ++it)
+    {
+        if(paridade)
+        {
+            it->setLabel('A');
+        }else
+        {
+            it->setLabel('B');
+        }
+        paridade = !paridade;
+    }
+
+}
+
+void Grafo::imprimir_biparticao()
+{
+    for(std::vector<No>::iterator it = listaAdj.begin();it != listaAdj.end() ; ++it)
+    {
+        std::cout<< "-> "<< it->getLabel()<< std::endl;
+    }
 }

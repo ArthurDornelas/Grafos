@@ -47,6 +47,8 @@ public:
     void lerDigrafo(string caminho);
     bool ehBipartido();
     char bucar_label_do_no(int id);
+    void preencher_grafo_bipartido();
+    void imprimir_biparticao();
 
 
 };

@@ -7,12 +7,14 @@ using namespace std;
 class No{
 
 private:
+
     int id;
     int grau;
     char label;
     float id_intraNo;
 
 public:
+
     std::vector <Aresta> listaAresta;
     std::vector <float> dInter;
     No();
