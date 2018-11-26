@@ -9,6 +9,7 @@ class No{
 private:
     int id;
     int grau;
+    char label;
     float id_intraNo;
 
 public:
@@ -16,6 +17,8 @@ public:
     No();
     No(int id, int grau);
     ~No();
+    void setLabel(char label) { this->label = label; }
+    char getLabel() { return this->label; }
     int getId();
     int getGrau();
     void setId(int id);

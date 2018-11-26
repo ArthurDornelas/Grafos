@@ -8,6 +8,7 @@ class Aresta{
         float pesoAresta;
         int identNo;
         int idLista;
+
     public:
         Aresta(int idNo,float pesoA,int id ){ identNo = idNo; pesoAresta = pesoA; idLista = id; };
         float getPesoAresta(){ return this->pesoAresta; };

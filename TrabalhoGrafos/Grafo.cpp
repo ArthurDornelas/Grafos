@@ -568,7 +568,7 @@ void Grafo::separaArestasClusters()
 
 }
 
-/*void Grafo::lerDigrafo(string caminho)
+void Grafo::lerDigrafo(string caminho)
 {
     ifstream arquivo;
     int id_no_1, id_no_2;
@@ -592,4 +592,36 @@ void Grafo::separaArestasClusters()
         }
     }
 }
-*/
+
+char Grafo::bucar_label_do_no(int id)
+{
+    for(std::vector<No>::iterator it = listaAdj.begin(); it != listaAdj.end(); ++it)
+    {
+        int id_it = it->getId();
+        if(id_it == id)
+        {
+            return it->getLabel();
+        }
+    }
+}
+
+bool Grafo::ehBipartido()
+{
+
+    for(std::vector<No>::iterator it = listaAdj.begin(); it != listaAdj.end(); ++it)
+    {
+        char label = it->getLabel();
+        int j = 0;
+        for(std::vector <Aresta>::iterator arest = it->listaAresta.begin(); arest != it->listaAresta.end(); arest++, j++)
+        {
+            int id = arest->getIdNo();
+            char label_2 = bucar_label_do_no(id);
+            if(label_2 == label)
+            {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}

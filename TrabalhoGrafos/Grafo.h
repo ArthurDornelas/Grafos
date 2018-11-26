@@ -43,6 +43,8 @@ public:
     void separaArestasClusters();
     void lerGrafo(string caminho);
     void lerDigrafo(string caminho);
+    bool ehBipartido();
+    char bucar_label_do_no(int id);
 
 
 };
