@@ -810,6 +810,7 @@ void Grafo::lerDigrafo(string caminho)
 
         }
     }
+    arquivo.close();
 }
 
 char Grafo::bucar_label_do_no(int id)
