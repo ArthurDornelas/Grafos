@@ -359,7 +359,6 @@ void Grafo::criaCluster(No no)
     c.setIdCentroide(no.getId());
     c.noCluster.push_back(no);
     clusters.push_back(c);
-    c.nNos++;
 }
 
 void Grafo::clusterizacaoGuloso()
@@ -382,31 +381,76 @@ void Grafo::clusterizacaoGuloso()
 
     for(std::vector<No>::iterator noArv = (arv+1) ; noArv != arvore.end(); ++noArv) //Agora seleciona qual Nó da arvore se liga ao primeiro Nó escolhido.
     {
+
+        bool moveC = false , moveCsim = false;
         bool flag = false;
-        cout<<"selecionou o no "<<noArv->getId()<<endl;
-        cout<<"entrou vetor noArv"<<endl;
+
+
         if(noArv->getGrau() > 1)
         {
-            cout<<"Grau maior que 1"<<endl;
+
             int arestaAtual = 0;
             for(std::vector<Aresta>::iterator arest = arestasArvore.begin(); arest != arestasArvore.end(); ++arest)
             {
-                cout<<"Entrou for aresta"<<endl;
-                cout<<"Grau No arv "<<arv->getId()<<endl;
+
+
                 if(arest->getIdLista() == arv->getId() && arest->getIdNo() == noArv->getId())
                 {
-                    cout<<"entrou if tirar aresta"<<endl;
                     criaCluster(*arv);
                     criaCluster(*noArv);
-                    cout<<"copia auxAresta"<<endl;
+
                     auxArestasArvore = arestasArvore;
                     auxArestasArvore.erase(auxArestasArvore.begin() + arestaAtual);
-                    for (std::vector<Aresta>::iterator aresta = auxArestasArvore.begin(); aresta != auxArestasArvore.end(); ++aresta)
-                    {
-                        cout << aresta->getIdLista() << " -> " << aresta->getIdNo() << "  ";
-                    }
-                    cout<<endl;
+
                     alocaNosClusters();
+
+                    int m = 0;
+                    for(std::vector<Cluster>::iterator clust = clusters.begin(); clust != clusters.end(); ++clust){
+
+                        moveCentroide(m);
+                        m++;
+                    }
+
+                    for(int n =0 ; n < clusters.size() ; n++){
+
+
+                        for(int i=0; i < clusters[n].noCluster.size();i++){
+
+
+                            moveC = moveCluster(clusters[n].noCluster[i].getId());
+                            if(moveC == true)
+                                moveCsim = true;
+
+                        }
+
+                    }
+
+
+
+                    if(moveCsim == true){
+                        int cSize = clusters.size();
+                        for(int i = 0; i < cSize ; i++){
+
+                                for(std::vector<No>::iterator arve = arvore.begin() ; arve != arvore.end(); ++arve){
+                                      if(clusters[i].getIdCentroide() == arve->getId()){
+                                           clusters.erase(clusters.begin() + i);
+                                           criaCluster(*arve);
+                                     }
+                                }
+
+                        }
+
+
+                        alocaNosClusters();
+                    }
+
+                   // for(std::vector<Cluster>::iterator clust = clusters.begin(); clust != clusters.end(); ++clust){
+//                                    clust->noCluster.clear();
+                    //}
+
+                    //alocaNosClusters();
+
+
                     flag = true;
                     break;
                 }
@@ -424,7 +468,11 @@ void Grafo::clusterizacaoGuloso()
 void Grafo::alocaNosClusters()
 {
 
-    int j=0,i=0,k=0, l, m;
+
+    int j=0; //posicao atual no
+    int i=0; // posicao atual cluster
+    int k=0;
+    int l, m;
     for(std::vector<Cluster>::iterator clust = clusters.begin(); clust != clusters.end(); ++clust)
     {
 
@@ -503,7 +551,7 @@ void Grafo::alocaNosClusters()
 
     for(std::vector<Cluster>::iterator clus = clusters.begin(); clus != clusters.end(); ++clus)
     {
-        cout<<"imprimi"<<endl;
+
         for(std::vector<No>::iterator it = clus->noCluster.begin(); it != clus->noCluster.end(); ++it)
         {
             cout<<it->getId()<< "  ";
@@ -511,14 +559,21 @@ void Grafo::alocaNosClusters()
         cout<<endl;
     }
 
+
+
     separaArestasClusters();
     cout<< endl;
 
-    calculaDInter(2);
 }
 
 void Grafo::moveCentroide(int indexClust)
 {
+    int w =0 ;
+    for(std::vector<No>::iterator no = clusters[indexClust].noCluster.begin(); no != clusters[indexClust].noCluster.end(); ++no){
+        clusters[indexClust].calculaDintra(clusters[indexClust].noCluster[w].getId());
+        w++;
+    }
+
     int centroideId = clusters[indexClust].getIdCentroide();
     float menorSoma = -1;
     int dIntra = -1;
@@ -537,17 +592,23 @@ void Grafo::moveCentroide(int indexClust)
        }
     }
 
-    //cout<<"Novo Centroide " << centroideId << endl;
+    clusters[indexClust].setIdCentroide(centroideId);
+
 
 }
 
 void Grafo::separaArestasClusters()
 {
+    for(std::vector<Cluster>::iterator clust = clusters.begin(); clust != clusters.end(); ++clust){
+        clust->arestasCluster.clear();
+    }
+
+
     int i=0, j=0, k=0;
 
     for(std::vector<Cluster>::iterator clust = clusters.begin(); clust != clusters.end(); ++clust)
     {
-        j=0;
+
         for(std::vector<Aresta>::iterator aresta = auxArestasArvore.begin(); aresta != auxArestasArvore.end(); ++aresta)
         {
             j=0;
@@ -579,7 +640,6 @@ void Grafo::separaArestasClusters()
         i++;
     }
 
-    moveCentroide(0);
 
 }
 
@@ -658,7 +718,6 @@ void Grafo::calculaDInter(int idNo){
         }
 
         else if(k == c) {
-                cout << "entrou no else if"<<endl;
                 soma = 0;
         }
 
@@ -720,19 +779,22 @@ void Grafo::calculaDInter(int idNo){
         //////////////////////////////////////////////////////////////////
        arvore[k].dInter.push_back(soma);
     }
+    //for(int j = 0; j<arvore[k].dInter.size() ; j++){
+      //      cout << "Cluster "<<j<<" -- dInter = " << arvore[k].dInter[j]<<endl;
 
-    for(int j = 0; j<arvore[k].dInter.size() ; j++){
-            cout << "Cluster "<<j<<" -- dInter = " << arvore[k].dInter[j]<<endl;
+    //}
 
-    }
 
 }
 
-void Grafo::moveCluster(int idNo)
+bool Grafo::moveCluster(int idNo)
 {
+
     int indexIdNo = -1;
     bool flag = false;
     float menor_dInter = -1;
+    int idArestaAuxArvore = -1;
+    int idArestaArvore = -1;
 
     int k=0; // posicao do idNo no vetor Arvore
     for(int i=0;i<arvore.size();i++){
@@ -741,6 +803,30 @@ void Grafo::moveCluster(int idNo)
          break;
         }
     }
+
+
+    for(int cont=0 ; cont < arestasArvore.size(); cont++)
+    {
+        if(arestasArvore[cont].getIdLista()==idNo)
+        {
+                idArestaArvore = cont;
+                break;
+        }
+    }
+
+
+
+
+    for(int cont=0 ; cont < auxArestasArvore.size(); cont++)
+    {
+        if(auxArestasArvore[cont].getIdLista()==idNo)
+        {
+                idArestaAuxArvore = cont;
+                break;
+        }
+    }
+
+
 
     int i = 0; //posicao cluster
     for(std::vector<Cluster>::iterator clust = clusters.begin(); clust != clusters.end(); ++clust)
@@ -759,13 +845,16 @@ void Grafo::moveCluster(int idNo)
        i++;
     }
 
+
     calculaDInter(idNo);
 
     bool mudaCluster = false;
     int salvaV = i;
-    menor_dInter = arvore[k].dInter[i];
+    menor_dInter = arvore[k].dInter[i];//coloca como menor d_inter a distancia do No até o centroide do cluster que ele esta.
+
     for(int v=0 ; v<arvore[k].dInter.size() ; v++){
         if(v != i){
+
                 if(arvore[k].dInter[v] < menor_dInter){
                     menor_dInter = arvore[k].dInter[v];
                     mudaCluster = true;
@@ -774,15 +863,35 @@ void Grafo::moveCluster(int idNo)
         }
     }
 
+
     if(mudaCluster == true)
     {
-        clusters[salvaV].noCluster.push_back(arvore[k]);
-        clusters[i].noCluster.erase(clusters[i].noCluster.begin() + indexIdNo);
+        auxArestasArvore.erase(auxArestasArvore.begin() + idArestaAuxArvore);
 
-        alocaNosClusters();
+
+        int contAresta = 0;
+        int contNo = 0;
+        for(std::vector<No>::iterator no = clusters[salvaV].noCluster.begin(); no != clusters[salvaV].noCluster.end(); ++no){
+
+                for(std::vector<Aresta>::iterator aresta = arestasArvore.begin(); aresta != arestasArvore.end(); ++aresta){
+
+                    if((idNo == aresta->getIdNo() && aresta->getIdLista() == no->getId()) || (idNo == aresta->getIdLista() && aresta->getIdNo() == no->getId()) ){
+                            auxArestasArvore.insert(auxArestasArvore.begin() + idArestaArvore , arestasArvore[contAresta]);
+                            break;
+                    }
+                    contAresta++;
+                }
+
+         contNo++;
+        }
+
+
+
+        return true;
+
 
     }
-
+    return false;
 
 }
 
@@ -792,7 +901,7 @@ void Grafo::lerDigrafo(string caminho)
     ifstream arquivo;
     int id_no_1, id_no_2;
     float peso_aresta;
-    arquivo.open(caminho);
+    arquivo.open(caminho.c_str());
     if (arquivo.is_open())
     {
         while(arquivo >> id_no_1 >> id_no_2 >> peso_aresta)
